@@ -1,0 +1,29 @@
+﻿<Window x:Class="WPF_POS.EmployeeFolder.EmployeeList"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_POS.EmployeeFolder"
+        mc:Ignorable="d"
+        WindowState="Maximized"
+        Title="EmployeeList" Height="450" Width="800">
+
+    <Grid>
+        <DataGrid Name="dgvEmployee"
+                  FontSize="25"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  MouseDoubleClick="dgvEmployee_MouseDoubleClick">
+            
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Width="0.1*" Binding="{Binding Id}"/>
+                <DataGridTextColumn Header="Name" Width="0.3*" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Username" Width="0.3*" Binding="{Binding Username}"/>
+                <DataGridTextColumn Header="Password" Width="0.3*" Binding="{Binding Password}"/>
+                <DataGridTextColumn Header="Phone" Width="0.3*" Binding="{Binding Phone}"/>
+                <DataGridTextColumn Header="Salary" Width="0.3*" Binding="{Binding Salary}"/>
+                <DataGridTextColumn Header="Address" Width="0.3*" Binding="{Binding Address}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

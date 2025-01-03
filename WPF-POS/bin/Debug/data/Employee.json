@@ -1,0 +1,29 @@
+[
+    {
+        "Id": 1,
+        "Name": "meimei",
+        "Username": "julia",
+        "Password": "1234",
+        "Phone": "1234",
+        "Salary": 1234.0,
+        "Address": "1234"
+    },
+    {
+        "Id": 2,
+        "Name": "Anya",
+        "Username": "Pinky",
+        "Password": "0000",
+        "Phone": "2302-124",
+        "Salary": 12002.0,
+        "Address": "Japan"
+    },
+    {
+        "Id": 3,
+        "Name": "Princess",
+        "Username": "Anna",
+        "Password": "1111",
+        "Phone": "123-02129",
+        "Salary": 4000.0,
+        "Address": "French"
+    }
+]

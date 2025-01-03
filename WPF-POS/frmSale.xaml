@@ -1,0 +1,371 @@
+﻿<Window x:Class="WPF_POS.frmSale"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_POS"
+        mc:Ignorable="d"
+        WindowState="Maximized"
+        Title="POS" Height="550" Width="1000">
+
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.02*"/>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="0.15*"/>
+            <RowDefinition Height="0.02*"/>
+        </Grid.RowDefinitions>
+
+        <!--row0 top selection-->
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.06*"/>
+                <ColumnDefinition Width="0.1*"/>
+                <ColumnDefinition Width="0.15*"/>
+                <ColumnDefinition Width="0.15*"/>
+                <ColumnDefinition Width="0.21*"/>
+                <ColumnDefinition Width="0.2*"/>
+                <ColumnDefinition Width="0.21*"/>
+                <ColumnDefinition Width="0.2*"/>
+            </Grid.ColumnDefinitions>
+
+            <!--id-->
+            <TextBlock Grid.Column="0"
+                Text="ID : "
+                FontSize="18"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+            />
+            <TextBox Grid.Column="1"
+                Name="txtInvoiceId"
+                IsReadOnly="True"
+                     
+                FontSize="18"         
+                VerticalAlignment="Center"
+            />
+
+            <!--history id-->
+            <TextBlock Grid.Column="2"
+                Text="History ID : "
+                FontSize="18"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+            />
+            <ComboBox Grid.Column="3"
+                Name="cmbHistoryId"
+                DropDownClosed="cmbHistoryId_DropDownClosed"
+                      
+                FontSize="18"
+            />
+
+            <!--customer name-->
+            <TextBlock Grid.Column="4"
+                Text="Customer Name: "
+                FontSize="18"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+            />
+            <ComboBox Grid.Column="5"
+                Name="cmbCustomerName"
+                FontSize="18"
+            />
+
+            <!--employee name-->
+            <TextBlock Grid.Column="6"
+                Text="Emplolyee Name: "
+                FontSize="18"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+            />
+            <ComboBox Grid.Column="7"
+                Name="cmbEmployeeName"
+                FontSize="18"
+            />
+        </Grid>
+
+        <!--row1 input action-->
+        <Grid Grid.Row="1" Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <!--column0 input & button-->
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="0.2*"/>
+                </Grid.RowDefinitions>
+
+                <!--row0 input-->
+                <Grid Grid.Row="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.6*"/>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="0.25*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!--product name-->
+                    <TextBlock Grid.Row="0" Grid.Column="0"
+                        Text="Product Name : "
+                        FontSize="18"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Right"
+                    />
+                    <ComboBox Grid.Row="0" Grid.Column="2"
+                        Name="cmbProductName"  
+                              
+                        FontSize="20"
+                        VerticalAlignment="Center"
+                    />
+
+                    <!--quantity-->
+                    <TextBlock Grid.Row="1" Grid.Column="0"
+                        Text="Quantity : "
+                        FontSize="18"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Right"
+                    />
+                    <TextBox Grid.Row="1" Grid.Column="2"
+                        Name="txtQuantity"               
+                             
+                        FontSize="20"
+                        VerticalAlignment="Center"
+                    />
+                    
+                    <!--selling price-->
+                    <TextBlock Grid.Row="2" Grid.Column="0"
+                        Text="Selling Price : "
+                        FontSize="18"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Right"
+                    />
+                    <TextBox Grid.Row="2" Grid.Column="2"
+                        Name="txtSellingPrice"
+                        IsReadOnly="True"
+                             
+                        FontSize="20"
+                        VerticalAlignment="Center"
+                    />
+                    
+                    <!--total price-->
+                    <TextBlock Grid.Row="3" Grid.Column="0"
+                        Text="Total Price : "
+                        FontSize="18"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Right"
+                    />
+                    <TextBox Grid.Row="3" Grid.Column="2"
+                        Name="txtTotalPrice"
+                        IsReadOnly="True"
+                             
+                        FontSize="20"
+                        VerticalAlignment="Center"
+                    />
+                </Grid>
+
+                <!--row1 button-->
+                <StackPanel Grid.Row="1"
+                            Orientation="Horizontal"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center">
+
+                    <Button
+                        Name="btnNew"
+                        Click="btnNew_Click"
+                        
+                        Content="New"
+                        FontSize="20"
+                        Width="100"
+                        Margin="5,0,5,0"
+                    />
+                    <Button
+                        Name="btnAdd"
+                        Click="btnAdd_Click"
+                        
+                        Content="Add"
+                        FontSize="20"
+                        Width="100"
+                        Margin="5,0,5,0"
+                    />
+                    <Button
+                        Name="btnRemove"
+                        Click="btnRemove_Click"
+                        
+                        Content="Remove"
+                        FontSize="20"
+                        Width="100"
+                        Margin="5,0,5,0"
+                    />
+                </StackPanel>
+            </Grid>
+
+            <!--column1 input & button sale-->
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="0.2*"/>
+                </Grid.RowDefinitions>
+
+                <!--row0 input-->
+                <Grid Grid.Row="0" Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition Height="10"/>
+                    </Grid.RowDefinitions>
+
+                    <!--stock remain-->
+                    <TextBlock Grid.Row="0" Grid.Column="0"
+                        Text="Stock Remain"
+                        FontSize="20"
+                        FontWeight="Bold"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                    />
+                    <TextBlock Grid.Row="1"
+                        Name="tbStockRemain"       
+                        
+                        Text="0"
+                        FontSize="25"
+                        FontWeight="Bold"
+                        VerticalAlignment="Bottom"
+                        HorizontalAlignment="Center"
+                        Foreground="Blue"
+                    />
+
+                    <!--total amount-->
+                    <TextBlock Grid.Row="0" Grid.Column="1"
+                        Text="Total Amount : "
+                        FontSize="20"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Right"
+                    />
+                    <TextBox Grid.Row="0" Grid.Column="3"
+                        Name="txtTotalAmountSale"
+                        IsReadOnly="True"
+                             
+                        FontSize="18"
+                        VerticalAlignment="Center"
+                    />
+
+                    <!--amount paid-->
+                    <TextBlock Grid.Row="1" Grid.Column="1"
+                        Text="Amount Paid: "
+                        FontSize="20"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Right"
+                    />
+                    <TextBox Grid.Row="1" Grid.Column="3"
+                        Name="txtAmountPaidSale"
+                        
+                        FontSize="18"
+                        VerticalAlignment="Center"
+                    />
+
+                    <!--balance-->
+                    <TextBlock Grid.Row="2" Grid.Column="1"
+                        Text="Balance : "
+                        FontSize="20"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Right"
+                    />
+                    <TextBox Grid.Row="2" Grid.Column="3"
+                        Name="txtBalanceSale"
+                        IsReadOnly="True"
+
+                        FontSize="18"
+                        VerticalAlignment="Center"
+                    />
+                </Grid>
+
+                <!--row1 button-->
+                <StackPanel Grid.Row="1"
+                            Orientation="Horizontal"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center">
+
+                    <Button
+                        Name="btnNewSale"
+                        Click="btnNewSale_Click"
+                        
+                        Content="New"
+                        FontSize="20"
+                        Width="100"
+                        Margin="5,0,5,0"
+                    />
+                    <Button
+                        Name="btnUpdateSale"
+                        
+                        Content="Update"
+                        FontSize="20"
+                        Width="100"
+                        Margin="5,0,5,0"
+                    />
+                    <Button
+                        Name="btnSaveSale"
+                        Click="btnSaveSale_Click"
+                        
+                        Content="SAVE"
+                        FontSize="20"
+                        Width="100"
+                        Margin="5,0,5,0"
+                    />
+                </StackPanel>
+            </Grid>
+        </Grid>
+
+        <!--row2 data grid-->
+        <DataGrid Grid.Row="2" 
+                  Name="dgvSale"
+                  FontSize="16"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  MouseDoubleClick="dgvSale_MouseDoubleClick">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Width="0.07*" Binding="{Binding Id}"/>
+                <DataGridTextColumn Header="Product Name" Width="0.3*" Binding="{Binding ProductName}"/>
+                <DataGridTextColumn Header="Quantity" Width="0.2*" Binding="{Binding Quantity}"/>
+                <DataGridTextColumn Header="Unit" Width="0.2*" Binding="{Binding Unit}"/>
+                <DataGridTextColumn Header="Selling Price" Width="0.25*" Binding="{Binding SellingPrice}"/>
+                <DataGridTextColumn Header="Total Price" Width="0.25*" Binding="{Binding TotalPrice}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!--row3 total amount-->
+        <StackPanel Grid.Row="3"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center">
+
+            <TextBlock
+                Text="Total Amount : "
+                FontSize="23"
+            />
+            <TextBlock
+                Name="tbTotalAmount"
+                
+                Text="0"
+                FontSize="23"
+                Margin="20,0,20,0"
+            />
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,140 @@
+﻿<Window x:Class="WPF_POS.frmCategory"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_POS"
+        mc:Ignorable="d"
+        WindowState="Maximized"
+        Background="LightBlue"
+        Title="frmCategory" Height="650" Width="800">
+    
+    <Grid>
+        <Border Background="AliceBlue"
+                Width="700"
+                Height="550"
+                CornerRadius="25"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center">
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="0.2*"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                
+                <!--row1 category entry-->
+                <Rectangle Grid.Row="1" Fill="Plum"/>
+                <TextBlock Grid.Row="1"
+                    Text="Category Entry"
+                    FontSize="40"
+                    FontWeight="Bold"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                />
+
+                <!--row2 info and button-->
+                <Grid Grid.Row="2" Margin="20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="0.35*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!--column0 info-->
+                    <Grid Grid.Column="0" Margin="50,60,50,90">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Grid.Row="0" 
+                                    HorizontalAlignment="Center">
+                            <TextBlock
+                                Text="Id"
+                                FontSize="30"
+                                Margin="0,0,0,15"
+                            />
+                            <TextBox
+                                Name="txtId"
+                                IsReadOnly="True"
+                                                     
+                                Width="350"
+                                Height="45"
+                                FontSize="25"
+                                Background="AliceBlue"
+                            />
+                        </StackPanel>
+                        
+                        <StackPanel Grid.Row="1" 
+                                    HorizontalAlignment="Center">
+                            <TextBlock
+                                Text="Name"
+                                FontSize="30"
+                                Margin="0,0,0,15"
+                            />
+                            <TextBox
+                                Name="txtName"                                
+                                
+                                Width="350"
+                                Height="45"
+                                FontSize="25"
+                                Background="AliceBlue"
+                            />
+                        </StackPanel>
+                    </Grid>
+
+                    <!--column1 button-->
+                    <StackPanel Grid.Column="1"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center">
+                        <Button
+                            Name="btnAdd"
+                            Click="btnAdd_Click"
+                            
+                            Content="Add"
+                            Width="140"
+                            Height="55"
+                            FontSize="23"
+                            Margin="0,10,0,10"
+                            Background="LimeGreen"
+                        />
+                        <Button
+                            Name="btnUpdate"
+                            Click="btnUpdate_Click"
+                            
+                            Content="Update"
+                            Width="140"
+                            Height="55"
+                            FontSize="23"
+                            Margin="0,10,0,10"
+                            Background="LightSalmon"
+                        />
+                        <Button
+                            Name="btnDelete"
+                            Click="btnDelete_Click"
+                            
+                            Content="Delete"
+                            Width="140"
+                            Height="55"
+                            FontSize="23"
+                            Margin="0,10,0,10"
+                            Background="LightSalmon"
+                        />
+                        <Button
+                            Name="btnBrowse"
+                            Click="btnBrowse_Click"
+                            
+                            Content="Browse"
+                            Width="140"
+                            Height="55"
+                            FontSize="23"
+                            Margin="0,10,0,10"
+                            Background="LightSalmon"
+                        />
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

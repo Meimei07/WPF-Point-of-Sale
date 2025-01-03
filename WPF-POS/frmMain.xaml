@@ -1,0 +1,186 @@
+﻿<Window x:Class="WPF_POS.frmMain"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_POS"
+        mc:Ignorable="d"
+        WindowState="Maximized"
+        Title="frmMain" Height="650" Width="900">
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="80"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        <!--row0 menu-->
+        <Menu Grid.Row="0" 
+              Name="mainMenu" 
+              Background="#E8F5E9 "
+              Foreground="#2E7D32 ">
+            
+            <MenuItem Header="Category" FontSize="17" >
+                <MenuItem 
+                    Header="Category Entry"
+                    Name="categoryEntryMenuItem"
+                    Click="categoryEntryMenuItem_Click"
+                />
+                <MenuItem 
+                    Header="Category List"
+                    Name="categoryListMenuItem"
+                    Click="categoryListMenuItem_Click"
+                />
+            </MenuItem>
+
+            <MenuItem Header="Customer" FontSize="17">
+                <MenuItem 
+                    Header="Customer Entry"
+                    Name="customerEntryMenuItem"
+                    Click="customerEntryMenuItem_Click"
+                />
+                <MenuItem 
+                    Header="Customer List"
+                    Name="customerListMenuItem"
+                    Click="customerListMenuItem_Click"
+                />
+            </MenuItem>
+
+            <MenuItem Header="Supplier" FontSize="17">
+                <MenuItem 
+                    Header="Supplier Entry"
+                    Name="supplierEntryMenuItem"
+                    Click="supplierEntryMenuItem_Click"
+                />
+                <MenuItem 
+                    Header="Supplier List"
+                    Name="supplierListMenuItem"
+                    Click="supplierListMenuItem_Click"
+                />
+            </MenuItem>
+
+            <MenuItem Header="Employee" FontSize="17">
+                <MenuItem 
+                    Header="Employee Entry"
+                    Name="employeeEntryMenuItem"
+                    Click="employeeEntryMenuItem_Click"
+                />
+                <MenuItem 
+                    Header="Employee List"
+                    Name="employeeListMenuItem"
+                    Click="employeeListMenuItem_Click"
+                />
+            </MenuItem>
+
+            <MenuItem Header="Product" FontSize="17">
+                <MenuItem 
+                    Header="Product Entry"
+                    Name="productEntryMenuItem"
+                    Click="productEntryMenuItem_Click"
+                />
+                <MenuItem 
+                    Header="Product List"
+                    Name="productListMenuItem"
+                    Click="productListMenuItem_Click"
+                />
+            </MenuItem>
+        </Menu>
+        
+        <!--row1 toolbar-->
+        <ToolBar Grid.Row="1" Background="white">
+            
+            <Button Name="btnRegister" Click="btnRegister_Click" Margin="10,5,5,0">
+                <StackPanel>
+                    <Image 
+                        Source="/Resources/register_icon.png" 
+                        Height="45"
+                        Width="50"      
+                    />  
+                    <TextBlock Text="Register" FontSize="15" TextAlignment="Center"/>
+                </StackPanel>
+            </Button>
+
+            <Button Click="customerEntryMenuItem_Click"  Margin="10,5,5,0">
+                <StackPanel>
+                    <Image 
+                        Source="/Resources/customer_icon.png" 
+                        Height="45"
+                        Width="50"                   
+                    />
+                    <TextBlock Text="Customer" FontSize="15" TextAlignment="Center"/>
+                </StackPanel>
+            </Button>
+
+            <Button Click="employeeEntryMenuItem_Click" Margin="10,5,5,0">
+                <StackPanel>
+                    <Image 
+                        Source="/Resources/saller_icon.png" 
+                        Height="45"
+                        Width="50"                   
+                    />
+                    <TextBlock Text="Employee" FontSize="15" TextAlignment="Center"/>
+                </StackPanel>
+            </Button>
+
+            <Button Click="supplierEntryMenuItem_Click" Margin="10,5,5,0">
+                <StackPanel>
+                    <Image 
+                        Source="/Resources/supplier_icon.png" 
+                        Height="45"
+                        Width="50"              
+                    />
+                    <TextBlock Text="Supplier" FontSize="15" TextAlignment="Center"/>
+                </StackPanel>
+            </Button>
+
+            <Button Click="productEntryMenuItem_Click" Margin="10,5,5,0">
+                <StackPanel>
+                    <Image 
+                        Source="/Resources/product_icon.png" 
+                        Height="45"
+                        Width="50"                   
+                    />
+                    <TextBlock Text="Product" FontSize="15" TextAlignment="Center"/>
+                </StackPanel>
+            </Button>
+
+            <!--<Button Name="btnSale" Margin="10,5,5,0">
+                <StackPanel>
+                    
+                </StackPanel>
+            </Button>-->
+
+            <!--<Button Name="btnPurchase" Click="btnPurchase_Click" Margin="10,5,5,0">
+                <StackPanel>
+                    <Image
+                        Source="/Resources/purchase_icon.png"
+                        Height="45"
+                        Width="50"
+                    />
+                    <TextBlock Text="Purchase" FontSize="15" TextAlignment="Center"/>
+                </StackPanel>
+            </Button>-->
+            
+        </ToolBar>
+        
+        <!--row2 main content-->
+        <DataGrid Grid.Row="2"
+                  Name="dgvProduct"
+                  FontSize="18"
+                  Margin="10"
+                  CanUserAddRows="False"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True">
+            
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Width="0.1*" Binding="{Binding Id}"/>
+                <DataGridTextColumn Header="Name" Width="0.25*" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Category" Width="0.25*" Binding="{Binding Category.Name}"/>
+                <DataGridTextColumn Header="Unit" Width="0.2*" Binding="{Binding Unit}"/>
+                <DataGridTextColumn Header="Cost Price" Width="0.25*" Binding="{Binding CostPrice}"/>
+                <DataGridTextColumn Header="Selling Price" Width="0.25*" Binding="{Binding SellingPrice}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
