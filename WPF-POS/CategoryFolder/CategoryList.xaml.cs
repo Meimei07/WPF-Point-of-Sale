@@ -28,12 +28,9 @@ namespace WPF_POS
         public CategoryList(frmCategory frmCategory)
         {
             InitializeComponent();
-            categories = ioManager.Read<List<Category>>(categoryFileName);
 
-            if(categories == null)
-            {
-                categories = new List<Category>();
-            }
+            categories = ioManager.Read<List<Category>>(categoryFileName);
+            if(categories == null) { categories = new List<Category>(); }
 
             this.frmCategory = frmCategory;
 

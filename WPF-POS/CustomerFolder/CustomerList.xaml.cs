@@ -32,10 +32,7 @@ namespace WPF_POS.CustomerFolder
             InitializeComponent();
 
             customers = ioManager.Read<List<Customer>>(customerFileName);
-            if(customers == null)
-            {
-                customers = new List<Customer>();
-            }
+            if(customers == null) { customers = new List<Customer>(); }
 
             this.frmCustomer = frmCustomer;
 

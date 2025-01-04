@@ -31,11 +31,8 @@ namespace WPF_POS
             InitializeComponent();
 
             customers = ioManager.Read<List<Customer>>(customerFileName);
-            if(customers == null)
-            {
-                customers = new List<Customer>();
-            }
-            txtName.Focus();
+            if(customers == null) { customers = new List<Customer>(); }
+
             Clear();
         }
 
@@ -53,37 +50,30 @@ namespace WPF_POS
 
         private void Clear()
         {
-            //Customer customer = new Customer();
-            //customer.Id = GetLastId();
-            //customer.Name = string.Empty;
-            //customer.Phone = string.Empty;
-            //customer.Address = string.Empty;
-
-            //this.DataContext = customer;
-
             txtId.Text = GetLastId().ToString();
             txtName.Text = string.Empty;
-            txtAddress.Text = string.Empty;
             txtPhone.Text = string.Empty;
+            txtAddress.Text = string.Empty;
+            txtName.Focus();
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             if(string.IsNullOrEmpty(txtName.Text))
             {
-                MessageBox.Show("Name can't be empty");
+                MessageBox.Show("name can't be empty");
                 txtName.Focus();
                 return;
             }
             if (string.IsNullOrEmpty(txtPhone.Text))
             {
-                MessageBox.Show("Phone can't be empty");
+                MessageBox.Show("phone can't be empty");
                 txtPhone.Focus();
                 return;
             }
             if (string.IsNullOrEmpty(txtAddress.Text))
             {
-                MessageBox.Show("Address can't be empty");
+                MessageBox.Show("address can't be empty");
                 txtAddress.Focus();
                 return;
             }
@@ -95,10 +85,9 @@ namespace WPF_POS
 
             Customer customer = new Customer(id, name, phone, address);
             customers.Add(customer);
-
             ioManager.Write(customerFileName, customers);
+            
             MessageBox.Show("Customer added!");
-            txtName.Focus();
             Clear();
         }
 
@@ -113,8 +102,6 @@ namespace WPF_POS
             Customer customer = customers.Where(c => c.Id == customerId).FirstOrDefault();
             if(customer != null)
             {
-                //this.DataContext = customer;
-
                 txtId.Text = customer.Id.ToString();
                 txtName.Text = customer.Name;
                 txtPhone.Text = customer.Phone;
@@ -126,19 +113,19 @@ namespace WPF_POS
         {
             if (string.IsNullOrEmpty(txtName.Text))
             {
-                MessageBox.Show("Name can't be empty");
+                MessageBox.Show("name can't be empty");
                 txtName.Focus();
                 return;
             }
             if (string.IsNullOrEmpty(txtPhone.Text))
             {
-                MessageBox.Show("Phone can't be empty");
+                MessageBox.Show("phone can't be empty");
                 txtPhone.Focus();
                 return;
             }
             if (string.IsNullOrEmpty(txtAddress.Text))
             {
-                MessageBox.Show("Address can't be empty");
+                MessageBox.Show("address can't be empty");
                 txtAddress.Focus();
                 return;
             }
@@ -151,12 +138,12 @@ namespace WPF_POS
                 customer.Name = txtName.Text;
                 customer.Phone = txtPhone.Text;
                 customer.Address = txtAddress.Text;
-
+                
                 ioManager.Write(customerFileName, customers);
+                
                 MessageBox.Show("Customer updated!");
-                txtName.Focus();
+                Clear();    
             }
-            Clear();
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
@@ -185,12 +172,11 @@ namespace WPF_POS
             if (customer != null)
             {
                 customers.Remove(customer);
-
                 ioManager.Write(customerFileName, customers);
+                
                 MessageBox.Show("Customer removed!");
-                txtName.Focus();
+                Clear();
             }
-            Clear();
         }
     }
 }

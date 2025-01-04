@@ -25,6 +25,7 @@ namespace WPF_POS
         private string employeeFileName = "Employee";
         private string saleFileName = "Sale"; //related to history id
         private string purchaseFileName = "Purchase"; //related to stock remain
+        private string stockFileName = "Stock";
 
         private IOManager ioManager = new IOManager();
 
@@ -34,6 +35,7 @@ namespace WPF_POS
         private List<Sale> sales;
         private Sale sale = new Sale(); //declare globally because it's related between two functions, add product and save sale
         private List<Purchase> purchases;
+        private List<Stock> stocks;
 
         public frmSale()
         {
@@ -45,12 +47,14 @@ namespace WPF_POS
             employees = ioManager.Read<List<Employee>>(employeeFileName);
             sales = ioManager.Read<List<Sale>>(saleFileName);
             purchases = ioManager.Read<List<Purchase>>(purchaseFileName);
+            stocks = ioManager.Read<List<Stock>>(stockFileName);
 
             if(products == null) { products = new List<Product>();  }
             if(customers == null) { customers = new List<Customer>();  }
             if(employees == null) { employees = new List<Employee>();  }
             if(sales == null) { sales = new List<Sale>(); }
             if(purchases == null) { purchases = new List<Purchase>(); }
+            if(stocks == null) { stocks = new List<Stock>(); }
 
             //binding data to form
             foreach(Product product in products) { cmbProductName.Items.Add(product.Name); }
@@ -104,6 +108,25 @@ namespace WPF_POS
             foreach (Sale sale in sales) { cmbHistoryId.Items.Add(sale.InvoiceId); }
         }
 
+        private void calculateTotalAmount()
+        {
+            totalAmount = 0;
+            foreach (SaleDetail saleDe in sale.SaleDetails)
+            {
+                totalAmount += saleDe.TotalPrice;
+            }
+            txtTotalAmountSale.Text = totalAmount.ToString();
+            tbTotalAmount.Text = totalAmount.ToString();
+        }
+
+        private void bindDataToGrid()
+        {
+            dgvSale.ItemsSource = null;
+            dgvSale.ItemsSource = sale.SaleDetails;
+
+            calculateTotalAmount();
+        }
+
         private double totalAmount;
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
@@ -119,6 +142,10 @@ namespace WPF_POS
                 txtQuantity.Focus();
                 return;
             }
+            if (string.IsNullOrEmpty(txtSellingPrice.Text) || string.IsNullOrEmpty(txtTotalPrice.Text))
+            {
+                return;
+            }
 
             string productName = cmbProductName.Text;
             int quantity = int.Parse(txtQuantity.Text);
@@ -127,56 +154,24 @@ namespace WPF_POS
             if(pro != null)
             {
                 //need to check if we have enough stock for customer product's qty
-                //stock remain = purchase from supplier qty - sale qty
-                int stockRemain;
-                foreach (Purchase purchase in purchases)
-                {
-                    PurchaseDetail purchaseDetail = purchase.PurchaseDetails.Where(pd => pd.ProductName == productName).FirstOrDefault();
-                    if (purchaseDetail != null)
-                    {
-                        stockRemain = purchaseDetail.Quantity - quantity;
-
-                        if(stockRemain >= 0)
-                        {
-                            tbStockRemain.Text = stockRemain.ToString();
-                            purchaseDetail.Quantity -= quantity;
-                            ioManager.Write(purchaseFileName, purchases);
-                        }
-                        else 
-                        {
-                            MessageBox.Show($"stock remain only {purchaseDetail.Quantity}, sorry!");
-                            tbStockRemain.Text = purchaseDetail.Quantity.ToString();
-                            return;
-                        }
-                    }
-                }
+                //stock remain = stock qty - sale qty
 
                 //selling price, is price of one item
                 double sellingPrice = pro.SellingPrice;
-                txtSellingPrice.Text = sellingPrice.ToString();
 
                 //total price, is price of selling price * qty
                 double totalPrice = quantity * sellingPrice;
-                txtTotalPrice.Text = totalPrice.ToString();
 
                 int saleDetailsCount = sale.SaleDetails.Count;
+
                 //declare saleDetail locally because, in each add product function, will have new saleDetail (new product each add, but not new customer)
                 SaleDetail saleDetail = new SaleDetail(saleDetailsCount + 1, productName, quantity, pro.Unit, sellingPrice, totalPrice); 
                 sale.SaleDetails.Add(saleDetail); //add saleDetail to list 
 
-                //bind to data grid
-                dgvSale.ItemsSource = null;
-                dgvSale.ItemsSource = sale.SaleDetails;
-
                 MessageBox.Show("product added!");
 
-                totalAmount = 0;
-                foreach (SaleDetail saleDe in sale.SaleDetails)
-                {
-                    totalAmount += saleDe.TotalPrice;
-                }
-                txtTotalAmountSale.Text = totalAmount.ToString();
-                tbTotalAmount.Text = totalAmount.ToString();
+                //bind to data grid and calculate total amount
+                bindDataToGrid();
             }
         }
 
@@ -187,30 +182,10 @@ namespace WPF_POS
 
         private void btnRemove_Click(object sender, RoutedEventArgs e)
         {
-            if(string.IsNullOrEmpty(cmbProductName.Text))
+            if(dgvSale.SelectedItems.Count > 0)
             {
-                MessageBox.Show("product name can't be empty");
-                return;
-            }
-            if(string.IsNullOrEmpty(txtQuantity.Text))
-            {
-                MessageBox.Show("quantity can't be empty");
-                return;
-            }
-
-            string productName = cmbProductName.Text;
-            int quantity = int.Parse(txtQuantity.Text);
-            SaleDetail saleDetail = sale.SaleDetails.Where(s => s.ProductName == productName && s.Quantity == quantity).FirstOrDefault();
-            
-            if(saleDetail != null)
-            {
-                if(string.IsNullOrEmpty(txtSellingPrice.Text))
-                {
-                    MessageBox.Show("please select product from the grid to remove!");
-                    return;
-                }
-
-                sale.SaleDetails.Remove(saleDetail);
+                int selectedIndex = dgvSale.SelectedIndex;
+                sale.SaleDetails.RemoveAt(selectedIndex);
 
                 int updateId = 1;
                 foreach (SaleDetail saleDe in sale.SaleDetails)
@@ -220,23 +195,9 @@ namespace WPF_POS
                 }
 
                 MessageBox.Show("product removed!");
-                SubClear();
 
-                dgvSale.ItemsSource = null;
-                dgvSale.ItemsSource = sale.SaleDetails;
-
-                totalAmount = 0;
-                foreach (SaleDetail saleDe in sale.SaleDetails)
-                {
-                    totalAmount += saleDe.TotalPrice;
-                }
-                txtTotalAmountSale.Text = totalAmount.ToString();
-                tbTotalAmount.Text = totalAmount.ToString();
-            }
-            else if(saleDetail == null)
-            {
-                MessageBox.Show("uh oh! this product doesn't exist in the grid");
-                return;
+                //bind to data grid and calculate total amount
+                bindDataToGrid();
             }
         }
 
@@ -278,9 +239,19 @@ namespace WPF_POS
             }
 
             remainAmount = totalAmountPaid - totalAmount;
-            txtBalanceSale.Text = remainAmount.ToString();
 
             sales.Add(new Sale(invoiceId, customerName, employeeName, totalAmount, totalAmountPaid, remainAmount, sale.SaleDetails));
+
+            //subtract from stock
+            foreach(SaleDetail saleDe in sale.SaleDetails)
+            {
+                Stock stock = stocks.Where(s => s.ProductName == saleDe.ProductName).FirstOrDefault();
+                if(stock != null)
+                {
+                    stock.Quantity -= saleDe.Quantity;
+                    ioManager.Write(stockFileName, stocks);
+                }
+            }
 
             ioManager.Write(saleFileName, sales);
             MessageBox.Show("Sale success!");
@@ -291,33 +262,68 @@ namespace WPF_POS
             MainClear();
         }
 
-        private void dgvSale_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void txtQuantity_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if(dgvSale.SelectedItems.Count > 0)
+            try
             {
-                int selectedIndex = dgvSale.SelectedIndex;
-                SaleDetail saleDetail = sale.SaleDetails[selectedIndex];
+                string productName = cmbProductName.Text;
+                int quantity = int.Parse(txtQuantity.Text);
 
-                cmbProductName.Text = saleDetail.ProductName;
-                txtQuantity.Text = saleDetail.Quantity.ToString();
-                txtSellingPrice.Text = saleDetail.SellingPrice.ToString();
-                txtTotalPrice.Text = saleDetail.TotalPrice.ToString();
+                if(quantity > 0)
+                {
+                    Stock stock = stocks.Where(s => s.ProductName == productName).FirstOrDefault();
 
-                dgvSale.CommitEdit(DataGridEditingUnit.Row, true);
+                    if (stock != null)
+                    {
+                        int stockRemain = stock.Quantity;
 
-                //this.Close();
-                //don't need this one, because if uncomment, when run and double click on grid, it will close 'this', which is frmSale
-            }
+                        if (stockRemain < quantity)
+                        {
+                            MessageBox.Show($"sorry, not enough stock! remain only {stock.Quantity}");
+                            tbStockRemain.Text = stockRemain.ToString();
+                            return;
+                        }
+                        else
+                        {
+                            stockRemain -= quantity;
+                            tbStockRemain.Text = stockRemain.ToString();
+
+                            double sellingPrice = double.Parse(txtSellingPrice.Text);
+                            double totalPrice = quantity * sellingPrice;
+                            txtTotalPrice.Text = totalPrice.ToString();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("uh oh! product not in stock yet!");
+                        return;
+                    }
+                }
+            } catch(Exception ex) { }
         }
 
-        private void cmbHistoryId_DropDownClosed(object sender, EventArgs e)
+        private void txtAmountPaidSale_TextChanged(object sender, TextChangedEventArgs e)
         {
-            sales = ioManager.Read<List<Sale>>(saleFileName); //read immediately after new customer (sale) added, so that it's up to date
+            try
+            {
+                double amountPaid = double.Parse(txtAmountPaidSale.Text);
 
-            int historyId = int.Parse(cmbHistoryId.Text);
+                double remainAmount = amountPaid - totalAmount;
+                txtBalanceSale.Text = remainAmount.ToString();
+            } catch(Exception ex) { }
+        }
+
+        private void cmbHistoryId_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(cmbHistoryId.SelectedValue == null)
+            {
+                return;
+            }
+
+            int historyId = (int)cmbHistoryId.SelectedValue;
             Sale sale = sales.Where(s => s.InvoiceId == historyId).FirstOrDefault();
 
-            if (sale != null)
+            if(sale != null)
             {
                 txtInvoiceId.Text = sale.InvoiceId.ToString();
                 cmbCustomerName.Text = sale.CustomerName;
@@ -329,6 +335,36 @@ namespace WPF_POS
                 tbTotalAmount.Text = sale.TotalAmount.ToString();
 
                 dgvSale.ItemsSource = sale.SaleDetails;
+            }
+        }
+
+        private void cmbProductName_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(cmbProductName.SelectedValue == null)
+            {
+                return;
+            }
+
+            string productName = cmbProductName.SelectedValue.ToString();
+            if(productName == null)
+            {
+                return;
+            }
+
+            Product product = products.Where(p => p.Name == productName).FirstOrDefault();
+            if(product != null)
+            {
+                Stock stock = stocks.Where(s => s.ProductName == productName).FirstOrDefault();
+                if(stock == null)
+                {
+                    MessageBox.Show("uh oh! product is not in stock yet");
+                    SubClear();
+                    return;
+                }
+
+                tbStockRemain.Text = stock.Quantity.ToString();
+                txtSellingPrice.Text = product.SellingPrice.ToString();
+                txtQuantity.Focus();
             }
         }
     }

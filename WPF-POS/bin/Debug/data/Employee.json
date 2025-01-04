@@ -20,10 +20,19 @@
     {
         "Id": 3,
         "Name": "Princess",
-        "Username": "Anna",
+        "Username": "Anne",
         "Password": "1111",
         "Phone": "123-02129",
         "Salary": 4000.0,
         "Address": "French"
+    },
+    {
+        "Id": 4,
+        "Name": "Fodger",
+        "Username": "Loid",
+        "Password": "1010",
+        "Phone": "0-392-29",
+        "Salary": 2000.0,
+        "Address": "Japan"
     }
 ]

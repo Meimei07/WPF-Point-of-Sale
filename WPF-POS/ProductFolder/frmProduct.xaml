@@ -66,8 +66,7 @@
                             <TextBox
                                 Name="txtId"
                                 IsReadOnly="True"    
-                                
-                                
+                                                                
                                 FontSize="25"
                                 Height="46"   
                                 Background="AliceBlue"
@@ -83,8 +82,7 @@
                                 Margin="0,0,0,10"
                             />
                             <ComboBox 
-                                Name="cmbCategory"
-                                
+                                Name="cmbCategory"                                
                                 
                                 FontSize="25"
                                 Height="46"                               
@@ -100,8 +98,7 @@
                             />
                             <TextBox
                                 Name="txtCostPrice"
-                                
-                                
+                                                               
                                 FontSize="25"
                                 Height="46"  
                                 Background="AliceBlue"                                
@@ -116,8 +113,7 @@
                                 Margin="0,0,0,10"
                             />
                             <TextBox
-                                Name="txtName"
-                                
+                                Name="txtName"                                
                                 
                                 FontSize="25"
                                 Height="46" 
@@ -133,8 +129,7 @@
                                 Margin="0,0,0,10"
                             />
                             <TextBox
-                                Name="txtUnit"
-                                
+                                Name="txtUnit"                               
                                 
                                 FontSize="25"
                                 Height="46"    
@@ -151,8 +146,7 @@
                             />
                             <TextBox
                                 Name="txtSellingPrice"
-                                
-                                
+                                                              
                                 FontSize="25"
                                 Height="46"  
                                 Background="AliceBlue"

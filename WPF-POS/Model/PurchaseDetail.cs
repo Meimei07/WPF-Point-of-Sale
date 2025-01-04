@@ -8,6 +8,7 @@ namespace WPF_POS.Model
 {
     public class PurchaseDetail
     {
+        public int Id { get; set; }
         public string ProductName { get; set; }
         public int Quantity { get; set; }
         public string Unit { get; set; }
@@ -15,8 +16,9 @@ namespace WPF_POS.Model
         public double SellingPrice { get; set; }
 
         public PurchaseDetail() { }
-        public PurchaseDetail(string productName, int quantity, string unit, double costPrice, double sellingPrice)
+        public PurchaseDetail(int id, string productName, int quantity, string unit, double costPrice, double sellingPrice)
         {
+            this.Id = id;
             this.ProductName = productName;
             this.Quantity = quantity;
             this.Unit = unit;

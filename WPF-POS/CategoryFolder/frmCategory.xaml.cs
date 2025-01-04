@@ -29,12 +29,9 @@ namespace WPF_POS
             InitializeComponent();
 
             categories = ioManager.Read<List<Category>>(categoryFileName);
-            if(categories == null)
-            {
-                categories = new List<Category>();
-            } 
+            if(categories == null) { categories = new List<Category>(); } 
+
             Clear();
-            txtName.Focus();
         }
 
         private int GetLastId()
@@ -51,21 +48,17 @@ namespace WPF_POS
 
         private void Clear()
         {
-            //Category category = new Category();
-            //category.Id = GetLastId();
-            //category.Name = string.Empty;
-
-            //this.DataContext = category;
-
             txtId.Text = GetLastId().ToString();
             txtName.Text = string.Empty;
+            txtName.Focus();
+
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrEmpty(txtName.Text))
             {
-                MessageBox.Show("Name can't be empty");
+                MessageBox.Show("name can't be empty");
                 txtName.Focus();
                 return;
             }
@@ -78,7 +71,6 @@ namespace WPF_POS
             ioManager.Write(categoryFileName, categories);
 
             MessageBox.Show("Category added!");
-            txtName.Focus();
             Clear();
         }
 
@@ -93,8 +85,6 @@ namespace WPF_POS
             Category category = categories.Where(c => c.Id == categoryId).FirstOrDefault();
             if(category != null)
             {
-                //this.DataContext = category;
-
                 txtId.Text = category.Id.ToString();
                 txtName.Text = category.Name;
             }
@@ -104,7 +94,7 @@ namespace WPF_POS
         {
             if (string.IsNullOrEmpty(txtName.Text))
             {
-                MessageBox.Show("Name can't be empty");
+                MessageBox.Show("name can't be empty");
                 txtName.Focus();
                 return;
             }
@@ -115,19 +105,18 @@ namespace WPF_POS
             if(category != null)
             {
                 categories.Remove(category);
-
                 ioManager.Write(categoryFileName, categories);
+
                 MessageBox.Show("Category removed!");
-                txtName.Focus();
+                Clear();
             }
-            Clear();
         }
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrEmpty(txtName.Text))
             {
-                MessageBox.Show("Name can't be empty");
+                MessageBox.Show("name can't be empty");
                 txtName.Focus();
                 return;
             }
@@ -138,12 +127,11 @@ namespace WPF_POS
             if (category != null)
             {
                 category.Name = txtName.Text;
-
                 ioManager.Write(categoryFileName, categories);
+                
                 MessageBox.Show("Category updated!");
-                txtName.Focus();
+                Clear();
             }
-            Clear();
         }
     }
 }

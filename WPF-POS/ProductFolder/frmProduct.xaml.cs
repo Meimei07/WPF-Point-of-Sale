@@ -31,20 +31,17 @@ namespace WPF_POS
         public frmProduct()
         {
             InitializeComponent();
-            //Util.GenerateSampleCategory();
+
             products = ioManager.Read<List<Product>>(productFileName);
             categories = ioManager.Read<List<Category>>(categoryFileName);
 
-            if(products == null)
-            {
-                products = new List<Product>();
-            }
+            if(products == null) { products = new List<Product>(); }
 
             foreach (Category category in categories)
             {
                 cmbCategory.Items.Add(category.Name);
             }
-            txtName.Focus();
+            
             Clear();
         }
 
@@ -62,29 +59,20 @@ namespace WPF_POS
 
         private void Clear()
         {
-            //Product product = new Product();
-            //product.Id = GetLatestId();
-            //product.Name = string.Empty;
-            //product.Category = null;
-            //product.Unit = string.Empty;
-
-            //this.DataContext = product;
-            //product.CostPrice = double.Parse(txtCostPrice.Text);
-            //product.SellingPrice = double.Parse(txtSellingPrice.Text);
-
             txtId.Text = GetLatestId().ToString();
             txtName.Text = string.Empty;
             cmbCategory.Text = string.Empty;
             txtUnit.Text = string.Empty;
             txtCostPrice.Text = string.Empty;
             txtSellingPrice.Text = string.Empty;
+            txtName.Focus();
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             if(string.IsNullOrEmpty(txtName.Text))
             {
-                MessageBox.Show("Name can't be empty");
+                MessageBox.Show("name can't be empty");
                 txtName.Focus();
                 return;
             }
@@ -95,27 +83,29 @@ namespace WPF_POS
             }
             if (string.IsNullOrEmpty(txtUnit.Text))
             {
-                MessageBox.Show("Unit can't be empty");
+                MessageBox.Show("unit can't be empty");
                 txtUnit.Focus();
                 return;
             }
             if (string.IsNullOrEmpty(txtCostPrice.Text))
             {
-                MessageBox.Show("Cost price can't be empty");
+                MessageBox.Show("cost price can't be empty");
                 txtCostPrice.Focus();
                 return;
             }
             if (string.IsNullOrEmpty(txtSellingPrice.Text))
             {
-                MessageBox.Show("Selling price can't be empty");
+                MessageBox.Show("selling price can't be empty");
                 txtSellingPrice.Focus();
                 return;
             }
 
             int id = int.Parse(txtId.Text);
             string name = txtName.Text;
+
             string categoryName = cmbCategory.Text;
             Category category = categories.Where(c => c.Name == categoryName).FirstOrDefault();
+            
             string unit = txtUnit.Text;
             double costPrice = double.Parse(txtCostPrice.Text);
             double sellingPrice = double.Parse(txtSellingPrice.Text);
@@ -125,7 +115,6 @@ namespace WPF_POS
             ioManager.Write(productFileName, products);
 
             MessageBox.Show("Product added!");
-            txtName.Focus();
             Clear();
         }
 
@@ -156,7 +145,7 @@ namespace WPF_POS
         {
             if (string.IsNullOrEmpty(txtName.Text))
             {
-                MessageBox.Show("Name can't be empty");
+                MessageBox.Show("name can't be empty");
                 txtName.Focus();
                 return;
             }
@@ -167,19 +156,19 @@ namespace WPF_POS
             }
             if (string.IsNullOrEmpty(txtUnit.Text))
             {
-                MessageBox.Show("Unit can't be empty");
+                MessageBox.Show("unit can't be empty");
                 txtUnit.Focus();
                 return;
             }
             if (string.IsNullOrEmpty(txtCostPrice.Text))
             {
-                MessageBox.Show("Cost price can't be empty");
+                MessageBox.Show("cost price can't be empty");
                 txtCostPrice.Focus();
                 return;
             }
             if (string.IsNullOrEmpty(txtSellingPrice.Text))
             {
-                MessageBox.Show("Selling price can't be empty");
+                MessageBox.Show("selling price can't be empty");
                 txtSellingPrice.Focus();
                 return;
             }
@@ -193,22 +182,23 @@ namespace WPF_POS
                 product.Unit = txtUnit.Text;
                 product.CostPrice = double.Parse(txtCostPrice.Text);
                 product.SellingPrice = double.Parse(txtSellingPrice.Text);
+                
                 string categoryName = cmbCategory.Text;
                 Category category = categories.Where(c => c.Name == categoryName).FirstOrDefault();
                 product.Category = category;
 
                 ioManager.Write(productFileName, products);
+                
                 MessageBox.Show("Category updated!");
-                txtName.Focus();
+                Clear();
             }
-            Clear();
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrEmpty(txtName.Text))
             {
-                MessageBox.Show("Name can't be empty");
+                MessageBox.Show("name can't be empty");
                 txtName.Focus();
                 return;
             }
@@ -219,19 +209,19 @@ namespace WPF_POS
             }
             if (string.IsNullOrEmpty(txtUnit.Text))
             {
-                MessageBox.Show("Unit can't be empty");
+                MessageBox.Show("unit can't be empty");
                 txtUnit.Focus();
                 return;
             }
             if (string.IsNullOrEmpty(txtCostPrice.Text))
             {
-                MessageBox.Show("Cost price can't be empty");
+                MessageBox.Show("cost price can't be empty");
                 txtCostPrice.Focus();
                 return;
             }
             if (string.IsNullOrEmpty(txtSellingPrice.Text))
             {
-                MessageBox.Show("Selling price can't be empty");
+                MessageBox.Show("selling price can't be empty");
                 txtSellingPrice.Focus();
                 return;
             }
@@ -242,12 +232,11 @@ namespace WPF_POS
             if (product != null)
             {
                 products.Remove(product);
-
                 ioManager.Write(productFileName, products);
+                
                 MessageBox.Show("Category removed!");
-                txtName.Focus();
+                Clear();
             }
-            Clear();
         }
     }
 }

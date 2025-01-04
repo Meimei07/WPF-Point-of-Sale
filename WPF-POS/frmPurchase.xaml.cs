@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -24,11 +25,13 @@ namespace WPF_POS
         private string employeeFileName = "Employee";
         private string productFileName = "Product";
         private string purchaseFileName = "Purchase";
+        private string stockFileName = "Stock";
 
         private List<Employee> employees;
         private List<Product> products;
         private List<Purchase> purchases;
         private Purchase purchase = new Purchase();
+        private List<Stock> stocks;
 
         private IOManager ioManager = new IOManager();
 
@@ -40,19 +43,19 @@ namespace WPF_POS
             employees = ioManager.Read<List<Employee>>(employeeFileName);
             products = ioManager.Read<List<Product>>(productFileName);
             purchases = ioManager.Read<List<Purchase>>(purchaseFileName);
+            stocks = ioManager.Read<List<Stock>>(stockFileName);
 
             if(employees == null) { employees = new List<Employee>(); }
             if(products == null) { products = new List<Product>(); }
             if(purchases == null) { purchases = new List<Purchase>(); }
+            if(stocks == null) { stocks = new List<Stock>(); }
 
             //binding data to combo box
             foreach(Employee employee in employees) { cmbEmployeeName.Items.Add(employee.Name); }
             foreach(Product product in products) { cmbProductName.Items.Add(product.Name); }
             foreach(Purchase purchase in purchases) { cmbHistoryId.Items.Add(purchase.InvoiceId); }
 
-            //dgvPurchase.ItemsSource = purchase.PurchaseDetails;
-
-            Clear();
+            MainClear();
         }
 
         private int GetLastId()
@@ -67,13 +70,34 @@ namespace WPF_POS
             }
         }
 
-        public void Clear()
-        {
-            txtInvoiceId.Text = GetLastId().ToString();
+        public void SubClear()
+        {            
             cmbProductName.Text = string.Empty;
             txtQuantity.Text = string.Empty;
             txtCostPrice.Text = string.Empty;
             txtSellingPrice.Text = string.Empty;
+        }
+
+        private void MainClear()
+        {
+            SubClear();
+
+            txtInvoiceId.Text = GetLastId().ToString();
+            cmbEmployeeName.Text = string.Empty;
+
+            purchase = new Purchase(); //need new sale() because, if click on NewSale button, means new customer, so new sale, too
+
+            dgvPurchase.ItemsSource = string.Empty;
+            purchase.PurchaseDetails.Clear();
+
+            cmbHistoryId.Items.Clear();
+            foreach (Purchase purchase in purchases) { cmbHistoryId.Items.Add(purchase.InvoiceId); }
+        }
+
+        private void bindDataToGrid()
+        {
+            dgvPurchase.ItemsSource = null;
+            dgvPurchase.ItemsSource = purchase.PurchaseDetails;
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
@@ -89,86 +113,53 @@ namespace WPF_POS
                 txtQuantity.Focus();
                 return;
             }
-            if (string.IsNullOrEmpty(txtCostPrice.Text))
-            {
-                MessageBox.Show("cost price can't be empty");
-                txtCostPrice.Focus();
-                return;
-            }
-            if (string.IsNullOrEmpty(txtSellingPrice.Text))
-            {
-                MessageBox.Show("selling price can't be empty");
-                txtSellingPrice.Focus();
-                return;
-            }
 
             string productName = cmbProductName.Text;
             int quantity = int.Parse(txtQuantity.Text);
             double costPrice = double.Parse(txtCostPrice.Text);
             double sellingPrice = double.Parse(txtSellingPrice.Text);
 
-            PurchaseDetail purchaseDetail = new PurchaseDetail(productName, quantity, "unit", costPrice, sellingPrice);
-            purchase.PurchaseDetails.Add(purchaseDetail);
+            Product product = products.Where(p => p.Name == productName).FirstOrDefault();
+            if(product != null)
+            {
+                int purchaseDetailsCount = purchase.PurchaseDetails.Count;
 
-            dgvPurchase.ItemsSource = null;
-            dgvPurchase.ItemsSource = purchase.PurchaseDetails;
+                PurchaseDetail purchaseDetail = new PurchaseDetail(purchaseDetailsCount + 1, productName, quantity, product.Unit, costPrice, sellingPrice);
+                purchase.PurchaseDetails.Add(purchaseDetail);       
 
-            MessageBox.Show("Product added!");
-            //Clear();
+                MessageBox.Show("Product added!");
+
+                bindDataToGrid();
+
+                //also need to add the product name, id, and quantity to another file called stock
+                //to track the stock, when customer buy, need to subtract (-)
+                //when employees buy more, need to add (+)
+                //cannot add or subtract directly from the purchase detail list
+            }
         }
 
         private void btnNew_Click(object sender, RoutedEventArgs e)
         {
-            Clear();
+            SubClear();
         }
 
         private void btnRemove_Click(object sender, RoutedEventArgs e)
         {
-            if(string.IsNullOrEmpty(cmbProductName.Text))
+            if(dgvPurchase.SelectedItems.Count > 0)
             {
-                MessageBox.Show("product name can't be empty");
-                return;
-            }
-            if(string.IsNullOrEmpty(txtQuantity.Text))
-            {
-                MessageBox.Show("quantity can't be empty");
-                txtQuantity.Focus();
-                return;
-            }
-            if (string.IsNullOrEmpty(txtCostPrice.Text))
-            {
-                MessageBox.Show("cost price can't be empty");
-                txtQuantity.Focus();
-                return;
-            }
-            if (string.IsNullOrEmpty(txtSellingPrice.Text))
-            {
-                MessageBox.Show("selling price can't be empty");
-                txtQuantity.Focus();
-                return;
-            }
+                int selectedIndex = dgvPurchase.SelectedIndex;
+                purchase.PurchaseDetails.RemoveAt(selectedIndex);
 
-            string productName = cmbProductName.Text;
-            int quantity = int.Parse(txtQuantity.Text);
-            double costPrice = double.Parse(txtCostPrice.Text);
-            double sellingPrice = double.Parse(txtSellingPrice.Text);
-            
-            PurchaseDetail purchaseDetail = purchase.PurchaseDetails.Where(pd => pd.ProductName == productName && pd.Quantity == quantity && pd.CostPrice == costPrice && pd.SellingPrice == sellingPrice).FirstOrDefault();
-
-            if(purchaseDetail != null)
-            {
-                purchase.PurchaseDetails.Remove(purchaseDetail);
+                int updateId = 1;
+                foreach(PurchaseDetail purchaseDe in purchase.PurchaseDetails)
+                {
+                    purchaseDe.Id = updateId;
+                    updateId++;
+                }
 
                 MessageBox.Show("product removed!");
-                Clear();
 
-                dgvPurchase.ItemsSource = string.Empty;
-                dgvPurchase.ItemsSource = purchase.PurchaseDetails;
-            }
-            else
-            {
-                MessageBox.Show("uh oh! product doesn't exist in the grid");
-                return;
+                bindDataToGrid();
             }
         }
 
@@ -176,12 +167,12 @@ namespace WPF_POS
         {
             if (dgvPurchase.Items.Count == 0)
             {
-                MessageBox.Show("No product yet");
+                MessageBox.Show("no product yet");
                 return;
             }
             if(string.IsNullOrEmpty(cmbEmployeeName.Text))
             {
-                MessageBox.Show("Please select an employee");
+                MessageBox.Show("please select an employee");
                 return;
             }
 
@@ -191,30 +182,42 @@ namespace WPF_POS
             purchases.Add(new Purchase(invoiceId, employeeName, purchase.PurchaseDetails));
             ioManager.Write(purchaseFileName, purchases);
 
+            foreach(PurchaseDetail purchaseDetail in purchase.PurchaseDetails)
+            {
+                Product product = products.Where(p => p.Name == purchaseDetail.ProductName).FirstOrDefault();
+
+                Stock stock = stocks.Where(s => s.Id == product.Id).FirstOrDefault();
+                if(stock != null) //if already has that product in stock, add more quantity to it
+                {
+                    stock.Quantity += purchaseDetail.Quantity;
+                }
+                else //if doesn't have product in stock yet, add new stock
+                {
+                    Stock newStock = new Stock(product.Id, purchaseDetail.ProductName, purchaseDetail.Quantity);
+                    stocks.Add(newStock);
+                }
+                ioManager.Write(stockFileName, stocks);
+            }
+
             MessageBox.Show("Purchase success!");
         }
 
         private void btnNewPurchase_Click(object sender, RoutedEventArgs e)
         {
-            Clear();
-
-            cmbEmployeeName.Text = string.Empty;
-
-            purchase = new Purchase();
-
-            dgvPurchase.ItemsSource = string.Empty;
-            purchase.PurchaseDetails.Clear();
-
-            cmbHistoryId.Items.Clear();
-            foreach(Purchase purchase in purchases) { cmbHistoryId.Items.Add(purchase.InvoiceId); }
+            MainClear();
         }
 
-        private void cmbHistoryId_DropDownClosed(object sender, EventArgs e)
+        private void cmbHistoryId_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            int historyId = int.Parse(cmbHistoryId.Text);
+            if (cmbHistoryId.SelectedValue == null)
+            {
+                return;
+            }
+
+            int historyId = (int)(cmbHistoryId.SelectedValue);
             Purchase purchase = purchases.Where(p => p.InvoiceId == historyId).FirstOrDefault();
 
-            if(purchase != null)
+            if (purchase != null)
             {
                 txtInvoiceId.Text = purchase.InvoiceId.ToString();
                 cmbEmployeeName.Text = purchase.EmployeeName;
@@ -223,21 +226,23 @@ namespace WPF_POS
             }
         }
 
-        private void dgvPurchase_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void cmbProductName_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(dgvPurchase.SelectedItems.Count > 0)
+            if (cmbProductName.SelectedValue == null)
             {
-                int selectedIndex = dgvPurchase.SelectedIndex;
-                PurchaseDetail purchaseDetail = purchase.PurchaseDetails[selectedIndex];
+                return;
+            }
 
-                cmbProductName.Text = purchaseDetail.ProductName;
-                txtQuantity.Text = purchaseDetail.Quantity.ToString();
-                txtCostPrice.Text = purchaseDetail.CostPrice.ToString();
-                txtSellingPrice.Text = purchaseDetail.SellingPrice.ToString();
+            string productName = cmbProductName.SelectedValue.ToString();
+            if (string.IsNullOrEmpty(productName))
+                return;
 
-                dgvPurchase.CommitEdit(DataGridEditingUnit.Row, true);
+            Product product = products.Where(p => p.Name == productName).FirstOrDefault();
+            if(product != null)
+            {
+                txtCostPrice.Text = product.CostPrice.ToString();
+                txtSellingPrice.Text = product.SellingPrice.ToString();
             }
         }
-
     }
 }

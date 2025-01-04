@@ -31,11 +31,8 @@ namespace WPF_POS
             InitializeComponent();
 
             suppliers = ioManager.Read<List<Supplier>>(supplierFileName);
-            if(suppliers == null)
-            {
-                suppliers = new List<Supplier>();
-            }
-            txtName.Focus();
+            if(suppliers == null) { suppliers = new List<Supplier>(); }
+            
             Clear();
         }
 
@@ -57,25 +54,26 @@ namespace WPF_POS
             txtName.Text = string.Empty;
             txtPhone.Text = string.Empty;
             txtAddress.Text = string.Empty;
+            txtName.Focus();
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             if(string.IsNullOrEmpty(txtName.Text))
             {
-                MessageBox.Show("Name can't be empty");
+                MessageBox.Show("name can't be empty");
                 txtName.Focus();
                 return;
             }
             if (string.IsNullOrEmpty(txtPhone.Text))
             {
-                MessageBox.Show("Phone can't be empty");
+                MessageBox.Show("phone can't be empty");
                 txtPhone.Focus();
                 return;
             }
             if (string.IsNullOrEmpty(txtAddress.Text))
             {
-                MessageBox.Show("Address can't be empty");
+                MessageBox.Show("address can't be empty");
                 txtAddress.Focus();
                 return;
             }
@@ -87,10 +85,9 @@ namespace WPF_POS
 
             Supplier supplier = new Supplier(id, name, phone, address);
             suppliers.Add(supplier);
-
             ioManager.Write(supplierFileName, suppliers);
+            
             MessageBox.Show("Supplier added");
-            txtName.Focus();
             Clear();
         }
 
@@ -116,19 +113,19 @@ namespace WPF_POS
         {
             if (string.IsNullOrEmpty(txtName.Text))
             {
-                MessageBox.Show("Name can't be empty");
+                MessageBox.Show("name can't be empty");
                 txtName.Focus();
                 return;
             }
             if (string.IsNullOrEmpty(txtPhone.Text))
             {
-                MessageBox.Show("Phone can't be empty");
+                MessageBox.Show("phone can't be empty");
                 txtPhone.Focus();
                 return;
             }
             if (string.IsNullOrEmpty(txtAddress.Text))
             {
-                MessageBox.Show("Address can't be empty");
+                MessageBox.Show("address can't be empty");
                 txtAddress.Focus();
                 return;
             }
@@ -143,8 +140,8 @@ namespace WPF_POS
                 supplier.Address = txtAddress.Text;
 
                 ioManager.Write(supplierFileName, suppliers);
+                
                 MessageBox.Show("Supplier updated!");
-                txtName.Focus();
                 Clear();
             }
         }
@@ -153,19 +150,19 @@ namespace WPF_POS
         {
             if (string.IsNullOrEmpty(txtName.Text))
             {
-                MessageBox.Show("Name can't be empty");
+                MessageBox.Show("name can't be empty");
                 txtName.Focus();
                 return;
             }
             if (string.IsNullOrEmpty(txtPhone.Text))
             {
-                MessageBox.Show("Phone can't be empty");
+                MessageBox.Show("phone can't be empty");
                 txtPhone.Focus();
                 return;
             }
             if (string.IsNullOrEmpty(txtAddress.Text))
             {
-                MessageBox.Show("Address can't be empty");
+                MessageBox.Show("address can't be empty");
                 txtAddress.Focus();
                 return;
             }
@@ -176,10 +173,9 @@ namespace WPF_POS
             if (supplier != null)
             {
                 suppliers.Remove(supplier);
-
                 ioManager.Write(supplierFileName, suppliers);
+                
                 MessageBox.Show("Supplier removed!");
-                txtName.Focus();
                 Clear();
             }
         }

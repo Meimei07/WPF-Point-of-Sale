@@ -53,7 +53,7 @@
             />
             <ComboBox Grid.Column="3"
                 Name="cmbHistoryId"
-                DropDownClosed="cmbHistoryId_DropDownClosed"
+                SelectionChanged="cmbHistoryId_SelectionChanged"
                       
                 FontSize="18"
             />
@@ -122,6 +122,7 @@
                     />
                     <ComboBox Grid.Row="0" Grid.Column="2"
                         Name="cmbProductName"  
+                        SelectionChanged="cmbProductName_SelectionChanged"
                               
                         FontSize="20"
                         VerticalAlignment="Center"
@@ -135,7 +136,8 @@
                         HorizontalAlignment="Right"
                     />
                     <TextBox Grid.Row="1" Grid.Column="2"
-                        Name="txtQuantity"               
+                        Name="txtQuantity"    
+                        TextChanged="txtQuantity_TextChanged"
                              
                         FontSize="20"
                         VerticalAlignment="Center"
@@ -274,6 +276,7 @@
                     />
                     <TextBox Grid.Row="1" Grid.Column="3"
                         Name="txtAmountPaidSale"
+                        TextChanged="txtAmountPaidSale_TextChanged"
                         
                         FontSize="18"
                         VerticalAlignment="Center"
@@ -336,8 +339,7 @@
                   Name="dgvSale"
                   FontSize="16"
                   AutoGenerateColumns="False"
-                  CanUserAddRows="False"
-                  MouseDoubleClick="dgvSale_MouseDoubleClick">
+                  CanUserAddRows="False">
 
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Width="0.07*" Binding="{Binding Id}"/>

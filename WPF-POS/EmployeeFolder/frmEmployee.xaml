@@ -24,7 +24,7 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 
-                <!--row1-->
+                <!--row1 employee entry-->
                 <Rectangle Grid.Row="1" Fill="Khaki"/>
                 <TextBlock Grid.Row="1"
                     Text="Employee Entry"
@@ -48,6 +48,7 @@
                             <RowDefinition Height="0.36*"/>
                         </Grid.RowDefinitions>
 
+                        <!--row0-->
                         <Grid Grid.Row="0">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
@@ -155,8 +156,8 @@
                             </StackPanel>
                         </Grid>
                         
-                        <StackPanel Grid.Row="1"
-                                    >
+                        <!--row1-->
+                        <StackPanel Grid.Row="1">
                             <TextBlock
                                 Text="Address"
                                 FontSize="23"

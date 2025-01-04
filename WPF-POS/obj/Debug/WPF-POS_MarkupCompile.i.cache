@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\WPF\Lessons\WPF-POS\WPF-POS\obj\Debug\
+D:\Github\WPF-Point-of-Sale\WPF-POS\obj\Debug\
 WPF_POS
 none
 false
 DEBUG;TRACE
-D:\WPF\Lessons\WPF-POS\WPF-POS\App.xaml
-15-2018680054
+D:\Github\WPF-Point-of-Sale\WPF-POS\App.xaml
+16-1546011571
 
-31542242831
-14716946622
-CategoryFolder\frmCategory.xaml;CategoryFolder\CategoryList.xaml;CustomerFolder\CustomerList.xaml;CustomerFolder\frmCustomer.xaml;EmployeeFolder\EmployeeList.xaml;EmployeeFolder\frmEmployee.xaml;frmLogin.xaml;frmMain.xaml;frmPurchase.xaml;frmSale.xaml;ProductFolder\frmProduct.xaml;SupplierFolder\frmSupplier.xaml;MainWindow.xaml;ProductFolder\ProductList.xaml;SupplierFolder\SupplierList.xaml;
+32967999335
+14618477111
+CategoryFolder\frmCategory.xaml;CategoryFolder\CategoryList.xaml;CustomerFolder\CustomerList.xaml;CustomerFolder\frmCustomer.xaml;EmployeeFolder\EmployeeList.xaml;EmployeeFolder\frmEmployee.xaml;frmLogin.xaml;frmMain.xaml;frmPurchase.xaml;frmSale.xaml;frmStock.xaml;ProductFolder\frmProduct.xaml;SupplierFolder\frmSupplier.xaml;MainWindow.xaml;ProductFolder\ProductList.xaml;SupplierFolder\SupplierList.xaml;
 
-False
+True
 

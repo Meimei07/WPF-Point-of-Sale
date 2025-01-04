@@ -73,12 +73,16 @@
     <Compile Include="frmSale.xaml.cs">
       <DependentUpon>frmSale.xaml</DependentUpon>
     </Compile>
+    <Compile Include="frmStock.xaml.cs">
+      <DependentUpon>frmStock.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Model\Customer.cs" />
     <Compile Include="Model\Employee.cs" />
     <Compile Include="Model\Purchase.cs" />
     <Compile Include="Model\PurchaseDetail.cs" />
     <Compile Include="Model\Sale.cs" />
     <Compile Include="Model\SaleDetail.cs" />
+    <Compile Include="Model\Stock.cs" />
     <Compile Include="Model\Supplier.cs" />
     <Compile Include="ProductFolder\ProductList.xaml.cs">
       <DependentUpon>ProductList.xaml</DependentUpon>
@@ -86,7 +90,6 @@
     <Compile Include="SupplierFolder\SupplierList.xaml.cs">
       <DependentUpon>SupplierList.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Util.cs" />
     <Page Include="CategoryFolder\frmCategory.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -124,6 +127,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="frmSale.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="frmStock.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -216,6 +223,12 @@
     <Resource Include="Resources\register_icon.png" />
     <Resource Include="Resources\saller_icon.png" />
     <Resource Include="Resources\supplier_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\sale.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\stock_icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

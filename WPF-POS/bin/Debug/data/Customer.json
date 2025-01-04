@@ -1,1 +1,38 @@
-[{"Id":1,"Name":"mei","Phone":"12903324","Address":"Phnom Penh"},{"Id":2,"Name":"John","Phone":"242112","Address":"Phnom Penh"},{"Id":3,"Name":"Jay","Phone":"242112","Address":"Korea"},{"Id":4,"Name":"Jake","Phone":"242112","Address":"Korea"},{"Id":5,"Name":"Shua","Phone":"242112","Address":"Korea"}]
+[
+    {
+        "Id": 1,
+        "Name": "mei",
+        "Phone": "12903324",
+        "Address": "Phnom Penh"
+    },
+    {
+        "Id": 2,
+        "Name": "John",
+        "Phone": "242112",
+        "Address": "Phnom Penh"
+    },
+    {
+        "Id": 3,
+        "Name": "Jay",
+        "Phone": "242112",
+        "Address": "Korea"
+    },
+    {
+        "Id": 4,
+        "Name": "Joshua",
+        "Phone": "24-2430",
+        "Address": "Korea"
+    },
+    {
+        "Id": 5,
+        "Name": "Meh",
+        "Phone": "392202",
+        "Address": "PP"
+    },
+    {
+        "Id": 6,
+        "Name": "Kai",
+        "Phone": "1234923-124",
+        "Address": "Korea"
+    }
+]

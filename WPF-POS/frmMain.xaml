@@ -145,23 +145,39 @@
                 </StackPanel>
             </Button>
 
-            <!--<Button Name="btnSale" Margin="10,5,5,0">
+            <Button Name="btnSale" Click="btnSale_Click" Margin="5,5,0,0">
                 <StackPanel>
-                    
+                    <Image
+                        Source="/Resources/sale.png"
+                        Height="45"
+                        Width="50"
+                    />      
+                    <TextBlock Text="Sale" FontSize="15" TextAlignment="Center"/>
                 </StackPanel>
-            </Button>-->
+            </Button>
 
-            <!--<Button Name="btnPurchase" Click="btnPurchase_Click" Margin="10,5,5,0">
+            <Button Name="btnPurchase" Click="btnPurchase_Click" Margin="6,5,5,0">
                 <StackPanel>
                     <Image
                         Source="/Resources/purchase_icon.png"
                         Height="45"
-                        Width="50"
+                        Width="37"
                     />
                     <TextBlock Text="Purchase" FontSize="15" TextAlignment="Center"/>
                 </StackPanel>
-            </Button>-->
-            
+            </Button>
+
+            <Button Name="btnStock" Click="btnStock_Click" Margin="6,5,5,0">
+                <StackPanel>
+                    <Image
+                        Source="/Resources/stock_icon.png"
+                        Height="45"
+                        Width="37"
+                    />
+                    <TextBlock Text="Stock" FontSize="15" TextAlignment="Center"/>
+                </StackPanel>
+            </Button>
+
         </ToolBar>
         
         <!--row2 main content-->

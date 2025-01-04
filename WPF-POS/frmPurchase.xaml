@@ -51,7 +51,7 @@
             />
             <ComboBox Grid.Column="3"
                 Name="cmbHistoryId"
-                DropDownClosed="cmbHistoryId_DropDownClosed"
+                SelectionChanged="cmbHistoryId_SelectionChanged"
                       
                 FontSize="18"
                 VerticalAlignment="Center"
@@ -103,6 +103,8 @@
                 />
                 <ComboBox Grid.Row="0" Grid.Column="2"
                     Name="cmbProductName"
+                    SelectionChanged="cmbProductName_SelectionChanged"
+                          
                     FontSize="18"    
                     VerticalAlignment="Center"                   
                 />
@@ -134,7 +136,9 @@
                     HorizontalAlignment="Right"
                 />
                 <TextBox Grid.Row="2" Grid.Column="2"
-                    Name="txtCostPrice"         
+                    Name="txtCostPrice"     
+                    IsReadOnly="True"
+                         
                     FontSize="18"    
                     VerticalAlignment="Center"                   
                 />
@@ -148,6 +152,8 @@
                 />
                 <TextBox Grid.Row="3" Grid.Column="2"
                     Name="txtSellingPrice"
+                    IsReadOnly="True"
+                         
                     FontSize="18"    
                     VerticalAlignment="Center"                   
                 />
@@ -195,12 +201,12 @@
         <!--row2 data grid-->
         <DataGrid Grid.Row="2"
                   Name="dgvPurchase"
-                  FontSize="15"
+                  FontSize="18"
                   CanUserAddRows="False"
-                  AutoGenerateColumns="False"
-                  MouseDoubleClick="dgvPurchase_MouseDoubleClick">
+                  AutoGenerateColumns="False">
 
             <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Width="0.07*" Binding="{Binding Id}"/>
                 <DataGridTextColumn Header="Product Name" Width="0.35*" Binding="{Binding ProductName}"/>
                 <DataGridTextColumn Header="Quantity" Width="0.2*" Binding="{Binding Quantity}"/>
                 <DataGridTextColumn Header="Unit" Width="0.2*" Binding="{Binding Unit}"/>

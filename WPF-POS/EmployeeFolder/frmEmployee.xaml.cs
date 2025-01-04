@@ -31,11 +31,8 @@ namespace WPF_POS
             InitializeComponent();
 
             employees = ioManager.Read<List<Employee>>(employeeFileName);
-            if(employees == null)
-            {
-                employees = new List<Employee>();
-            }
-            txtName.Focus();
+            if(employees == null) { employees = new List<Employee>(); }
+
             Clear();
         }
 
@@ -60,43 +57,44 @@ namespace WPF_POS
             txtPhone.Text = string.Empty;
             txtSalary.Text = string.Empty;
             txtAddress.Text = string.Empty;
+            txtName.Focus();
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             if(string.IsNullOrEmpty(txtName.Text))
             {
-                MessageBox.Show("Name can't be empty");
+                MessageBox.Show("name can't be empty");
                 txtName.Focus();
                 return;
             }
             if (string.IsNullOrEmpty(txtUsername.Text))
             {
-                MessageBox.Show("Username can't be empty");
+                MessageBox.Show("username can't be empty");
                 txtUsername.Focus();
                 return;
             }
             if (string.IsNullOrEmpty(txtPassword.Text))
             {
-                MessageBox.Show("Password can't be empty");
+                MessageBox.Show("password can't be empty");
                 txtPassword.Focus();
                 return;
             }
             if (string.IsNullOrEmpty(txtPhone.Text))
             {
-                MessageBox.Show("Phone can't be empty");
-                txtPassword.Focus();
+                MessageBox.Show("phone can't be empty");
+                txtPhone.Focus();
                 return;
             }
             if (string.IsNullOrEmpty(txtSalary.Text))
             {
-                MessageBox.Show("Salary can't be empty");
+                MessageBox.Show("salary can't be empty");
                 txtSalary.Focus();
                 return;
             }
             if (string.IsNullOrEmpty(txtAddress.Text))
             {
-                MessageBox.Show("Address can't be empty");
+                MessageBox.Show("address can't be empty");
                 txtAddress.Focus();
                 return;
             }
@@ -111,10 +109,9 @@ namespace WPF_POS
 
             Employee employee = new Employee(id, name, username, password, phone, salary, address);
             employees.Add(employee);
-
             ioManager.Write(employeeFileName, employees);
+            
             MessageBox.Show("Employee added!");
-            txtName.Focus();
             Clear();
         }
 
@@ -122,37 +119,37 @@ namespace WPF_POS
         {
             if (string.IsNullOrEmpty(txtName.Text))
             {
-                MessageBox.Show("Name can't be empty");
+                MessageBox.Show("name can't be empty");
                 txtName.Focus();
                 return;
             }
             if (string.IsNullOrEmpty(txtUsername.Text))
             {
-                MessageBox.Show("Username can't be empty");
+                MessageBox.Show("username can't be empty");
                 txtUsername.Focus();
                 return;
             }
             if (string.IsNullOrEmpty(txtPassword.Text))
             {
-                MessageBox.Show("Password can't be empty");
+                MessageBox.Show("password can't be empty");
                 txtPassword.Focus();
                 return;
             }
             if (string.IsNullOrEmpty(txtPhone.Text))
             {
-                MessageBox.Show("Phone can't be empty");
+                MessageBox.Show("phone can't be empty");
                 txtPhone.Focus();
                 return;
             }
             if (string.IsNullOrEmpty(txtSalary.Text))
             {
-                MessageBox.Show("Salary can't be empty");
+                MessageBox.Show("salary can't be empty");
                 txtSalary.Focus();
                 return;
             }
             if (string.IsNullOrEmpty(txtAddress.Text))
             {
-                MessageBox.Show("Address can't be empty");
+                MessageBox.Show("address can't be empty");
                 txtAddress.Focus();
                 return;
             }
@@ -165,13 +162,13 @@ namespace WPF_POS
                 employee.Name = txtName.Text;
                 employee.Username = txtUsername.Text;
                 employee.Password = txtPassword.Text;
-                employee.Phone = txtPassword.Text;
-                employee.Salary = double.Parse(txtPassword.Text);
-                employee.Address = txtPassword.Text;
+                employee.Phone = txtPhone.Text;
+                employee.Salary = double.Parse(txtSalary.Text);
+                employee.Address = txtAddress.Text;
 
                 ioManager.Write(employeeFileName, employees);
+                
                 MessageBox.Show("Employee updated!");
-                txtName.Focus();
                 Clear();
             }
         }
@@ -180,37 +177,37 @@ namespace WPF_POS
         {
             if (string.IsNullOrEmpty(txtName.Text))
             {
-                MessageBox.Show("Name can't be empty");
+                MessageBox.Show("name can't be empty");
                 txtName.Focus();
                 return;
             }
             if (string.IsNullOrEmpty(txtUsername.Text))
             {
-                MessageBox.Show("Username can't be empty");
+                MessageBox.Show("username can't be empty");
                 txtUsername.Focus();
                 return;
             }
             if (string.IsNullOrEmpty(txtPassword.Text))
             {
-                MessageBox.Show("Password can't be empty");
+                MessageBox.Show("password can't be empty");
                 txtPassword.Focus();
                 return;
             }
             if (string.IsNullOrEmpty(txtPhone.Text))
             {
-                MessageBox.Show("Phone can't be empty");
+                MessageBox.Show("phone can't be empty");
                 txtPhone.Focus();
                 return;
             }
             if (string.IsNullOrEmpty(txtSalary.Text))
             {
-                MessageBox.Show("Salary can't be empty");
+                MessageBox.Show("salary can't be empty");
                 txtSalary.Focus();
                 return;
             }
             if (string.IsNullOrEmpty(txtAddress.Text))
             {
-                MessageBox.Show("Address can't be empty");
+                MessageBox.Show("address can't be empty");
                 txtAddress.Focus();
                 return;
             }
@@ -221,10 +218,9 @@ namespace WPF_POS
             if (employee != null)
             {
                 employees.Remove(employee);
-
                 ioManager.Write(employeeFileName, employees);
+                
                 MessageBox.Show("Employee removed!");
-                txtName.Focus();
                 Clear();
             }
         }

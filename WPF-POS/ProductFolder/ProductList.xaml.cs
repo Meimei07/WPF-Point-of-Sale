@@ -21,6 +21,8 @@ namespace WPF_POS
     /// </summary>
     public partial class ProductList : Window
     {
+        private string productFileName = "Product";
+
         private frmProduct frmProduct;
         private List<Product> products;
         private IOManager ioManager = new IOManager();
@@ -29,11 +31,8 @@ namespace WPF_POS
         {
             InitializeComponent();
 
-            products = ioManager.Read<List<Product>>("Product");
-            if (products == null)
-            {
-                products = new List<Product>();
-            }
+            products = ioManager.Read<List<Product>>(productFileName);
+            if (products == null) { products = new List<Product>(); }
 
             this.frmProduct = frmProduct;
             
@@ -59,10 +58,8 @@ namespace WPF_POS
                 frmProduct.BindData(product.Id);
 
                 dgvProduct.CommitEdit(DataGridEditingUnit.Row, true);
-
                 this.Close();
             }
-
         }
     }
 }

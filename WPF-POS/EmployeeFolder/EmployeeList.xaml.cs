@@ -31,10 +31,7 @@ namespace WPF_POS.EmployeeFolder
             InitializeComponent();
 
             employees = ioManager.Read<List<Employee>>(employeeFileName);
-            if(employees == null)
-            {
-                employees = new List<Employee>();
-            }
+            if(employees == null) { employees = new List<Employee>(); }
 
             this.frmEmployee = frmEmployee;
 
@@ -56,7 +53,6 @@ namespace WPF_POS.EmployeeFolder
                 frmEmployee.BindData(employee.Id);
 
                 dgvEmployee.CommitEdit(DataGridEditingUnit.Row, true);
-
                 this.Close();
             }
         }

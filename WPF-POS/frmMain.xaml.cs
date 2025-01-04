@@ -23,18 +23,18 @@ namespace WPF_POS
     /// </summary>
     public partial class frmMain : Window
     {
+        private string productFileName = "Product";
+
         private List<Product> products;
         private IOManager ioManager = new IOManager();
 
-        public frmMain()
+        public frmMain(frmLogin frmLogin)
         {
             InitializeComponent();
+            frmLogin.Close();
 
-            products = ioManager.Read<List<Product>>("Product");
-            if(products == null)
-            {
-                products = new List<Product>();
-            }
+            products = ioManager.Read<List<Product>>(productFileName);
+            if(products == null) { products = new List<Product>(); }
 
             dgvProduct.ItemsSource = products;
         }
@@ -92,7 +92,9 @@ namespace WPF_POS
             frmProduct frmProduct = new frmProduct();
             frmProduct.ShowDialog();
 
-            products = ioManager.Read<List<Product>>("Product");
+            //so that, if in product entry, the product is being updated or deleted or added, 
+            //the dgvProduct in main will auto refresh
+            products = ioManager.Read<List<Product>>(productFileName);
             dgvProduct.ItemsSource = products;
         }
 
@@ -108,10 +110,22 @@ namespace WPF_POS
             frmLogin.ShowDialog();
         }
 
-        //private void btnPurchase_Click(object sender, RoutedEventArgs e)
-        //{
-        //    frmPurchase frmPurchase = new frmPurchase();
-        //    frmPurchase.ShowDialog();
-        //}
+        private void btnPurchase_Click(object sender, RoutedEventArgs e)
+        {
+            frmPurchase frmPurchase = new frmPurchase();
+            frmPurchase.ShowDialog();
+        }
+
+        private void btnSale_Click(object sender, RoutedEventArgs e)
+        {
+            frmSale frmSale = new frmSale();
+            frmSale.ShowDialog();
+        }
+
+        private void btnStock_Click(object sender, RoutedEventArgs e)
+        {
+            frmStock frmStock = new frmStock();
+            frmStock.ShowDialog();
+        }
     }
 }

@@ -28,10 +28,8 @@ namespace WPF_POS
             InitializeComponent();
 
             employees = ioManager.Read<List<Employee>>("Employee");
-            if(employees == null)
-            {
-                employees = new List<Employee>();
-            }
+            if(employees == null) { employees = new List<Employee>(); }
+
             txtUsername.Focus();
         }
 
@@ -58,13 +56,13 @@ namespace WPF_POS
         {
             if(string.IsNullOrEmpty(txtUsername.Text))
             {
-                MessageBox.Show("Username can't be empty");
+                MessageBox.Show("username/password can't be empty");
                 txtUsername.Focus();
                 return;
             }
             if (string.IsNullOrEmpty(pbPassword.Password))
             {
-                MessageBox.Show("Password can't be empty");
+                MessageBox.Show("password can't be empty");
                 pbPassword.Focus();
                 return;
             }
@@ -76,7 +74,7 @@ namespace WPF_POS
             if(employee != null)
             {
                 //go into main form
-                frmMain frmMain = new frmMain();
+                frmMain frmMain = new frmMain(this);
                 frmMain.ShowDialog();
             }
             else

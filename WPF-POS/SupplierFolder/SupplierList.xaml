@@ -10,12 +10,12 @@
 
     <Grid>
         <DataGrid Name="dgvSupplier"
-          FontSize="25"
-          Margin="10"
-          AutoGenerateColumns="False"
-          CanUserAddRows="False"
-          AlternatingRowBackground="Azure"
-          MouseDoubleClick="dgvSupplier_MouseDoubleClick">
+                  FontSize="25"
+                  Margin="10"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  AlternatingRowBackground="Azure"
+                  MouseDoubleClick="dgvSupplier_MouseDoubleClick">
 
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Width="0.1*" Binding="{Binding Id}"/>

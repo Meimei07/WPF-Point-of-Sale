@@ -31,10 +31,7 @@ namespace WPF_POS.SupplierFolder
             InitializeComponent();
 
             suppliers = ioManager.Read<List<Supplier>>(supplierFileName);
-            if(suppliers == null)
-            {
-                suppliers = new List<Supplier>();
-            }
+            if(suppliers == null) { suppliers = new List<Supplier>(); }
 
             this.frmSupplier = frmSupplier;
 
@@ -56,7 +53,6 @@ namespace WPF_POS.SupplierFolder
                 frmSupplier.BindData(supplier.Id);
 
                 dgvSupplier.CommitEdit(DataGridEditingUnit.Row, true);
-
                 this.Close();
             }
         }
