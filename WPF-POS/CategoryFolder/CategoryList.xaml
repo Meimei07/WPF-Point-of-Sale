@@ -18,16 +18,8 @@
                   MouseDoubleClick="dgvCategory_MouseDoubleClick">
             
             <DataGrid.Columns>
-                <DataGridTextColumn
-                    Header="Id"
-                    Width="0.15*"
-                    Binding="{Binding Id}"
-                />
-                <DataGridTextColumn
-                    Header="Name"
-                    Width="*"
-                    Binding="{Binding Name}"
-                />
+                <DataGridTextColumn Header="Id" Width="0.15*" Binding="{Binding Id}"/>
+                <DataGridTextColumn Header="Name" Width="*" Binding="{Binding Name}"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

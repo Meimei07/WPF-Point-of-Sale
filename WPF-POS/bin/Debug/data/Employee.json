@@ -2,7 +2,7 @@
     {
         "Id": 1,
         "Name": "meimei",
-        "Username": "julia",
+        "Username": "mei",
         "Password": "1234",
         "Phone": "1234",
         "Salary": 1234.0,
@@ -15,24 +15,6 @@
         "Password": "0000",
         "Phone": "2302-124",
         "Salary": 12002.0,
-        "Address": "Japan"
-    },
-    {
-        "Id": 3,
-        "Name": "Princess",
-        "Username": "Anne",
-        "Password": "1111",
-        "Phone": "123-02129",
-        "Salary": 4000.0,
-        "Address": "French"
-    },
-    {
-        "Id": 4,
-        "Name": "Fodger",
-        "Username": "Loid",
-        "Password": "1010",
-        "Phone": "0-392-29",
-        "Salary": 2000.0,
         "Address": "Japan"
     }
 ]

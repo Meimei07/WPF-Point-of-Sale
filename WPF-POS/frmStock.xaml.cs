@@ -32,7 +32,7 @@ namespace WPF_POS
             stocks = ioManager.Read<List<Stock>>(stockFileName);
             if(stocks == null) { stocks = new List<Stock>(); }
 
-            stocks = stocks.OrderByDescending(s => s.Id).Reverse().ToList();
+            stocks = stocks.OrderByDescending(st => st.Id).Reverse().ToList();
 
             dgvStock.ItemsSource = stocks;
         }

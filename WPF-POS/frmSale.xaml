@@ -78,7 +78,7 @@
                 VerticalAlignment="Center"
             />
             <ComboBox Grid.Column="7"
-                Name="cmbEmployeeName"
+                Name="cmbEmployeeName"                      
                 FontSize="18"
             />
         </Grid>
@@ -142,7 +142,15 @@
                         FontSize="20"
                         VerticalAlignment="Center"
                     />
-                    
+                    <TextBlock Grid.Row="1" Grid.Column="3"
+                        Name="tbUnit"
+                               
+                        Text="{Binding Unit}"         
+                        FontSize="20"
+                        Margin="10,0,0,0"
+                        VerticalAlignment="Center"
+                    />
+
                     <!--selling price-->
                     <TextBlock Grid.Row="2" Grid.Column="0"
                         Text="Selling Price : "

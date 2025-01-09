@@ -24,7 +24,6 @@ namespace WPF_POS
         private string customerFileName = "Customer";
         private string employeeFileName = "Employee";
         private string saleFileName = "Sale"; //related to history id
-        private string purchaseFileName = "Purchase"; //related to stock remain
         private string stockFileName = "Stock";
 
         private IOManager ioManager = new IOManager();
@@ -33,27 +32,30 @@ namespace WPF_POS
         private List<Customer> customers;
         private List<Employee> employees;
         private List<Sale> sales;
+
         private Sale sale = new Sale(); //declare globally because it's related between two functions, add product and save sale
-        private List<Purchase> purchases;
+        
         private List<Stock> stocks;
 
-        public frmSale()
+        private string employeeName;
+        private double totalAmount;
+
+        public frmSale(string employeeName)
         {
             InitializeComponent();
+            this.employeeName = employeeName;
 
              //read from file
             products = ioManager.Read<List<Product>>(productFileName);
             customers = ioManager.Read<List<Customer>>(customerFileName);
             employees = ioManager.Read<List<Employee>>(employeeFileName);
             sales = ioManager.Read<List<Sale>>(saleFileName);
-            purchases = ioManager.Read<List<Purchase>>(purchaseFileName);
             stocks = ioManager.Read<List<Stock>>(stockFileName);
 
             if(products == null) { products = new List<Product>();  }
             if(customers == null) { customers = new List<Customer>();  }
             if(employees == null) { employees = new List<Employee>();  }
             if(sales == null) { sales = new List<Sale>(); }
-            if(purchases == null) { purchases = new List<Purchase>(); }
             if(stocks == null) { stocks = new List<Stock>(); }
 
             //binding data to form
@@ -92,7 +94,7 @@ namespace WPF_POS
 
             txtInvoiceId.Text = GetLastId().ToString();
             cmbCustomerName.Text = string.Empty;
-            cmbEmployeeName.Text = string.Empty;
+            cmbEmployeeName.Text = employeeName;
 
             txtTotalAmountSale.Text = string.Empty;
             txtAmountPaidSale.Text = string.Empty;
@@ -126,8 +128,6 @@ namespace WPF_POS
 
             calculateTotalAmount();
         }
-
-        private double totalAmount;
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
@@ -168,7 +168,7 @@ namespace WPF_POS
                 SaleDetail saleDetail = new SaleDetail(saleDetailsCount + 1, productName, quantity, pro.Unit, sellingPrice, totalPrice); 
                 sale.SaleDetails.Add(saleDetail); //add saleDetail to list 
 
-                MessageBox.Show("product added!");
+                MessageBox.Show("Product added!");
 
                 //bind to data grid and calculate total amount
                 bindDataToGrid();
@@ -187,6 +187,7 @@ namespace WPF_POS
                 int selectedIndex = dgvSale.SelectedIndex;
                 sale.SaleDetails.RemoveAt(selectedIndex);
 
+                //update n.o in data grid
                 int updateId = 1;
                 foreach (SaleDetail saleDe in sale.SaleDetails)
                 {
@@ -194,7 +195,7 @@ namespace WPF_POS
                     updateId++;
                 }
 
-                MessageBox.Show("product removed!");
+                MessageBox.Show("Product removed!");
 
                 //bind to data grid and calculate total amount
                 bindDataToGrid();
@@ -245,7 +246,7 @@ namespace WPF_POS
             //subtract from stock
             foreach(SaleDetail saleDe in sale.SaleDetails)
             {
-                Stock stock = stocks.Where(s => s.ProductName == saleDe.ProductName).FirstOrDefault();
+                Stock stock = stocks.Where(st => st.ProductName == saleDe.ProductName).FirstOrDefault();
                 if(stock != null)
                 {
                     stock.Quantity -= saleDe.Quantity;
@@ -271,7 +272,7 @@ namespace WPF_POS
 
                 if(quantity > 0)
                 {
-                    Stock stock = stocks.Where(s => s.ProductName == productName).FirstOrDefault();
+                    Stock stock = stocks.Where(st => st.ProductName == productName).FirstOrDefault();
 
                     if (stock != null)
                     {
@@ -354,7 +355,8 @@ namespace WPF_POS
             Product product = products.Where(p => p.Name == productName).FirstOrDefault();
             if(product != null)
             {
-                Stock stock = stocks.Where(s => s.ProductName == productName).FirstOrDefault();
+                //that product exist in products list, but it might or might not exist in stock
+                Stock stock = stocks.Where(st => st.ProductName == product.Name).FirstOrDefault();
                 if(stock == null)
                 {
                     MessageBox.Show("uh oh! product is not in stock yet");
@@ -365,6 +367,7 @@ namespace WPF_POS
                 tbStockRemain.Text = stock.Quantity.ToString();
                 txtSellingPrice.Text = product.SellingPrice.ToString();
                 txtQuantity.Focus();
+                tbUnit.DataContext = product;
             }
         }
     }

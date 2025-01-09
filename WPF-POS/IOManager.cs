@@ -12,7 +12,7 @@ namespace WPF_POS
     public class IOManager
     {
         private string path = @".\data";
-        private string extention = ".json";
+        private string extension = ".json";
 
         private void CreateFolder()
         {
@@ -26,7 +26,7 @@ namespace WPF_POS
 
         private string GetFullPath(string fileName)
         {
-            return string.Format($"{path}\\{fileName}{extention}");
+            return string.Format($"{path}\\{fileName}{extension}");
         }
 
         public void Write(string fileName, Object obj)
@@ -37,9 +37,11 @@ namespace WPF_POS
             }
 
             string fullPath = GetFullPath(fileName);
+
             StreamWriter streamWriter = new StreamWriter(fullPath);
             string content = JsonConvert.SerializeObject(obj);
             streamWriter.Write(content);
+
             streamWriter.Close();
         }
 
@@ -55,6 +57,7 @@ namespace WPF_POS
             StreamReader streamReader = new StreamReader(fullPath);
             string content = streamReader.ReadToEnd();
             streamReader.Close();
+
             return JsonConvert.DeserializeObject<T>(content);
         }
     }

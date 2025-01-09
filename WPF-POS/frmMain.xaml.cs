@@ -27,11 +27,13 @@ namespace WPF_POS
 
         private List<Product> products;
         private IOManager ioManager = new IOManager();
+        private string employeeName;
 
-        public frmMain(frmLogin frmLogin)
+        public frmMain(frmLogin frmLogin, string employeeName)
         {
             InitializeComponent();
             frmLogin.Close();
+            this.employeeName = employeeName;
 
             products = ioManager.Read<List<Product>>(productFileName);
             if(products == null) { products = new List<Product>(); }
@@ -92,7 +94,7 @@ namespace WPF_POS
             frmProduct frmProduct = new frmProduct();
             frmProduct.ShowDialog();
 
-            //so that, if in product entry, the product is being updated or deleted or added, 
+            //so that, if in product entry, the product is being updated, deleted or added, 
             //the dgvProduct in main will auto refresh
             products = ioManager.Read<List<Product>>(productFileName);
             dgvProduct.ItemsSource = products;
@@ -112,13 +114,13 @@ namespace WPF_POS
 
         private void btnPurchase_Click(object sender, RoutedEventArgs e)
         {
-            frmPurchase frmPurchase = new frmPurchase();
+            frmPurchase frmPurchase = new frmPurchase(employeeName);
             frmPurchase.ShowDialog();
         }
 
         private void btnSale_Click(object sender, RoutedEventArgs e)
         {
-            frmSale frmSale = new frmSale();
+            frmSale frmSale = new frmSale(employeeName);
             frmSale.ShowDialog();
         }
 

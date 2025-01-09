@@ -150,18 +150,19 @@ namespace WPF_POS
         {
             if (string.IsNullOrEmpty(txtName.Text))
             {
-                MessageBox.Show("Name can't be empty");
+                MessageBox.Show("name can't be empty");
+                txtName.Focus();
                 return;
             }
             if (string.IsNullOrEmpty(txtPhone.Text))
             {
-                MessageBox.Show("Phone can't be empty");
+                MessageBox.Show("phone can't be empty");
                 txtPhone.Focus();
                 return;
             }
             if (string.IsNullOrEmpty(txtAddress.Text))
             {
-                MessageBox.Show("Address can't be empty");
+                MessageBox.Show("address can't be empty");
                 txtAddress.Focus();
                 return;
             }

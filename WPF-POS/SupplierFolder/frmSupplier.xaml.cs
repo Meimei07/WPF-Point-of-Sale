@@ -87,7 +87,7 @@ namespace WPF_POS
             suppliers.Add(supplier);
             ioManager.Write(supplierFileName, suppliers);
             
-            MessageBox.Show("Supplier added");
+            MessageBox.Show("Supplier added!");
             Clear();
         }
 

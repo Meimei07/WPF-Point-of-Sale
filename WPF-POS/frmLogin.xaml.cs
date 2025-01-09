@@ -30,26 +30,14 @@ namespace WPF_POS
             employees = ioManager.Read<List<Employee>>("Employee");
             if(employees == null) { employees = new List<Employee>(); }
 
-            txtUsername.Focus();
+            Clear();
         }
 
         private void Clear()
         {
             txtUsername.Text = string.Empty;
             pbPassword.Password = string.Empty;
-        }
-
-        private Employee employeeExist(string username, string password)
-        {
-            Employee employee = employees.Where(em => em.Username == username && em.Password == password).FirstOrDefault();
-            if(employee == null)
-            {
-                return null;
-            }
-            else
-            {
-                return employee;
-            }
+            txtUsername.Focus();
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
@@ -70,19 +58,18 @@ namespace WPF_POS
             string username = txtUsername.Text;
             string password = pbPassword.Password;
 
-            Employee employee = employeeExist(username, password);
-            if(employee != null)
+            Employee employee = employees.Where(em => em.Username == username && em.Password == password).FirstOrDefault();
+            if (employee != null)
             {
-                //go into main form
-                frmMain frmMain = new frmMain(this);
+                //go to main form
+                frmMain frmMain = new frmMain(this, employee.Name);
                 frmMain.ShowDialog();
             }
             else
             {
-                MessageBox.Show("Incorrect username or password");
-                txtUsername.Focus();
+                MessageBox.Show("incorrect username or password");
+                Clear();
             }
-            Clear();
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)

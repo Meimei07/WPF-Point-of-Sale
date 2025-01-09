@@ -34,10 +34,12 @@ namespace WPF_POS
         private List<Stock> stocks;
 
         private IOManager ioManager = new IOManager();
+        private string employeeName;
 
-        public frmPurchase()
+        public frmPurchase(string employeeName)
         {
             InitializeComponent();
+            this.employeeName = employeeName;
 
             //read from file
             employees = ioManager.Read<List<Employee>>(employeeFileName);
@@ -83,9 +85,9 @@ namespace WPF_POS
             SubClear();
 
             txtInvoiceId.Text = GetLastId().ToString();
-            cmbEmployeeName.Text = string.Empty;
+            cmbEmployeeName.Text = employeeName;
 
-            purchase = new Purchase(); //need new sale() because, if click on NewSale button, means new customer, so new sale, too
+            purchase = new Purchase();
 
             dgvPurchase.ItemsSource = string.Empty;
             purchase.PurchaseDetails.Clear();
@@ -150,6 +152,7 @@ namespace WPF_POS
                 int selectedIndex = dgvPurchase.SelectedIndex;
                 purchase.PurchaseDetails.RemoveAt(selectedIndex);
 
+                //update n.o in data grid
                 int updateId = 1;
                 foreach(PurchaseDetail purchaseDe in purchase.PurchaseDetails)
                 {
@@ -182,11 +185,13 @@ namespace WPF_POS
             purchases.Add(new Purchase(invoiceId, employeeName, purchase.PurchaseDetails));
             ioManager.Write(purchaseFileName, purchases);
 
+            //add purchase qty to stock qty
             foreach(PurchaseDetail purchaseDetail in purchase.PurchaseDetails)
             {
+                //find product, becuz in else, when add new stock, will need product Id
                 Product product = products.Where(p => p.Name == purchaseDetail.ProductName).FirstOrDefault();
 
-                Stock stock = stocks.Where(s => s.Id == product.Id).FirstOrDefault();
+                Stock stock = stocks.Where(st => st.Id == product.Id).FirstOrDefault();
                 if(stock != null) //if already has that product in stock, add more quantity to it
                 {
                     stock.Quantity += purchaseDetail.Quantity;
@@ -235,13 +240,16 @@ namespace WPF_POS
 
             string productName = cmbProductName.SelectedValue.ToString();
             if (string.IsNullOrEmpty(productName))
+            {
                 return;
+            }
 
             Product product = products.Where(p => p.Name == productName).FirstOrDefault();
             if(product != null)
             {
                 txtCostPrice.Text = product.CostPrice.ToString();
                 txtSellingPrice.Text = product.SellingPrice.ToString();
+                tbUnit.DataContext = product;
             }
         }
     }

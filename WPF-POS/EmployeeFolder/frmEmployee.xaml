@@ -172,7 +172,7 @@
                         </StackPanel>
                     </Grid>
                     
-                    <!--column1-->
+                    <!--column1 button-->
                     <StackPanel Grid.Column="1"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center">
@@ -200,7 +200,8 @@
                             FontWeight="Bold"
                             Background="LightSalmon"
                             Margin="0,10,0,10"
-                        /><Button
+                        />
+                        <Button
                             Name="btnDelete"
                             Click="btnDelete_Click"
                             
@@ -211,7 +212,8 @@
                             FontWeight="Bold"
                             Background="LightSalmon"
                             Margin="0,10,0,10"
-                        /><Button
+                        />
+                        <Button
                             Name="btnBrowse"
                             Click="btnBrowse_Click"
                             

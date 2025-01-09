@@ -51,7 +51,6 @@ namespace WPF_POS
             txtId.Text = GetLastId().ToString();
             txtName.Text = string.Empty;
             txtName.Focus();
-
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
@@ -100,7 +99,8 @@ namespace WPF_POS
             }
 
             int id = int.Parse(txtId.Text);
-            Category category = categories.Where(c => c.Id == id).FirstOrDefault();
+            string name = txtName.Text;
+            Category category = categories.Where(c => c.Id == id && c.Name == name).FirstOrDefault();
 
             if(category != null)
             {
@@ -122,7 +122,8 @@ namespace WPF_POS
             }
 
             int id = int.Parse(txtId.Text);
-            Category category = categories.Where(c => c.Id == id).FirstOrDefault();
+            string name = txtName.Text;
+            Category category = categories.Where(c => c.Id == id && c.Name == name).FirstOrDefault();
 
             if (category != null)
             {

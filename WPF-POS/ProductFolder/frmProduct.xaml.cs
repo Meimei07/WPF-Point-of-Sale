@@ -189,7 +189,7 @@ namespace WPF_POS
 
                 ioManager.Write(productFileName, products);
                 
-                MessageBox.Show("Category updated!");
+                MessageBox.Show("Product updated!");
                 Clear();
             }
         }
@@ -234,7 +234,7 @@ namespace WPF_POS
                 products.Remove(product);
                 ioManager.Write(productFileName, products);
                 
-                MessageBox.Show("Category removed!");
+                MessageBox.Show("Product removed!");
                 Clear();
             }
         }
