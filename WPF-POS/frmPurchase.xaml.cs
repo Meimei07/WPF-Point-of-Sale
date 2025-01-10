@@ -132,6 +132,7 @@ namespace WPF_POS
                 MessageBox.Show("Product added!");
 
                 bindDataToGrid();
+                SubClear();
 
                 //also need to add the product name, id, and quantity to another file called stock
                 //to track the stock, when customer buy, need to subtract (-)
@@ -205,6 +206,7 @@ namespace WPF_POS
             }
 
             MessageBox.Show("Purchase success!");
+            MainClear();
         }
 
         private void btnNewPurchase_Click(object sender, RoutedEventArgs e)
@@ -249,6 +251,7 @@ namespace WPF_POS
             {
                 txtCostPrice.Text = product.CostPrice.ToString();
                 txtSellingPrice.Text = product.SellingPrice.ToString();
+                txtQuantity.Focus();
                 tbUnit.DataContext = product;
             }
         }

@@ -172,6 +172,8 @@ namespace WPF_POS
 
                 //bind to data grid and calculate total amount
                 bindDataToGrid();
+
+                SubClear();
             }
         }
 
@@ -256,6 +258,8 @@ namespace WPF_POS
 
             ioManager.Write(saleFileName, sales);
             MessageBox.Show("Sale success!");
+
+            MainClear();
         }
 
         private void btnNewSale_Click(object sender, RoutedEventArgs e)
