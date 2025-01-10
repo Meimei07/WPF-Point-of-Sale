@@ -1,1 +1,200 @@
-[{"InvoiceId":1,"EmployeeName":"meimei","PurchaseDetails":[{"Id":1,"ProductName":"Coke","Quantity":12,"Unit":"can","CostPrice":1500.0,"SellingPrice":2500.0}]},{"InvoiceId":2,"EmployeeName":"meimei","PurchaseDetails":[{"Id":1,"ProductName":"Fanta","Quantity":10,"Unit":"can","CostPrice":2000.0,"SellingPrice":3500.0},{"Id":2,"ProductName":"Coke","Quantity":12,"Unit":"can","CostPrice":1500.0,"SellingPrice":2500.0}]},{"InvoiceId":3,"EmployeeName":"Anya","PurchaseDetails":[{"Id":1,"ProductName":"SPY","Quantity":6,"Unit":"bottle","CostPrice":4500.0,"SellingPrice":8500.0},{"Id":2,"ProductName":"Teramisu","Quantity":6,"Unit":"slice","CostPrice":5000.0,"SellingPrice":10000.0}]},{"InvoiceId":4,"EmployeeName":"Anya","PurchaseDetails":[{"Id":1,"ProductName":"Fanta","Quantity":10,"Unit":"can","CostPrice":2000.0,"SellingPrice":3500.0},{"Id":2,"ProductName":"Olatte","Quantity":10,"Unit":"can","CostPrice":1500.0,"SellingPrice":2500.0},{"Id":3,"ProductName":"Cardigan","Quantity":5,"Unit":"piece","CostPrice":35000.0,"SellingPrice":45000.0},{"Id":4,"ProductName":"7 UP","Quantity":12,"Unit":"can","CostPrice":2500.0,"SellingPrice":4000.0}]},{"InvoiceId":5,"EmployeeName":"Anya","PurchaseDetails":[{"Id":1,"ProductName":"7 UP","Quantity":10,"Unit":"can","CostPrice":2500.0,"SellingPrice":4000.0}]},{"InvoiceId":6,"EmployeeName":"meimei","PurchaseDetails":[{"Id":1,"ProductName":"Fanta","Quantity":14,"Unit":"can","CostPrice":2000.0,"SellingPrice":3500.0},{"Id":2,"ProductName":"Coke","Quantity":22,"Unit":"can","CostPrice":1500.0,"SellingPrice":2500.0},{"Id":3,"ProductName":"Donut","Quantity":10,"Unit":"unit","CostPrice":1000.0,"SellingPrice":2500.0}]},{"InvoiceId":7,"EmployeeName":"meimei","PurchaseDetails":[{"Id":1,"ProductName":"Coke","Quantity":5,"Unit":"can","CostPrice":1500.0,"SellingPrice":2500.0},{"Id":2,"ProductName":"RIO","Quantity":10,"Unit":"bottle","CostPrice":6000.0,"SellingPrice":10000.0}]},{"InvoiceId":8,"EmployeeName":"meimei","PurchaseDetails":[{"Id":1,"ProductName":"Coke","Quantity":100,"Unit":"can","CostPrice":1500.0,"SellingPrice":2500.0},{"Id":2,"ProductName":"Fanta","Quantity":50,"Unit":"can","CostPrice":2000.0,"SellingPrice":3500.0}]},{"InvoiceId":9,"EmployeeName":"Anya","PurchaseDetails":[{"Id":1,"ProductName":"Buldak","Quantity":20,"Unit":"pack","CostPrice":3000.0,"SellingPrice":4500.0}]}]
+[
+    {
+        "InvoiceId": 1,
+        "EmployeeName": "meimei",
+        "PurchaseDetails": [
+            {
+                "Id": 1,
+                "ProductName": "Coke",
+                "Quantity": 12,
+                "Unit": "can",
+                "CostPrice": 1500.0,
+                "SellingPrice": 2500.0
+            }
+        ]
+    },
+    {
+        "InvoiceId": 2,
+        "EmployeeName": "meimei",
+        "PurchaseDetails": [
+            {
+                "Id": 1,
+                "ProductName": "Fanta",
+                "Quantity": 10,
+                "Unit": "can",
+                "CostPrice": 2000.0,
+                "SellingPrice": 3500.0
+            },
+            {
+                "Id": 2,
+                "ProductName": "Coke",
+                "Quantity": 12,
+                "Unit": "can",
+                "CostPrice": 1500.0,
+                "SellingPrice": 2500.0
+            }
+        ]
+    },
+    {
+        "InvoiceId": 3,
+        "EmployeeName": "Anya",
+        "PurchaseDetails": [
+            {
+                "Id": 1,
+                "ProductName": "SPY",
+                "Quantity": 6,
+                "Unit": "bottle",
+                "CostPrice": 4500.0,
+                "SellingPrice": 8500.0
+            },
+            {
+                "Id": 2,
+                "ProductName": "Teramisu",
+                "Quantity": 6,
+                "Unit": "slice",
+                "CostPrice": 5000.0,
+                "SellingPrice": 10000.0
+            }
+        ]
+    },
+    {
+        "InvoiceId": 4,
+        "EmployeeName": "Anya",
+        "PurchaseDetails": [
+            {
+                "Id": 1,
+                "ProductName": "Fanta",
+                "Quantity": 10,
+                "Unit": "can",
+                "CostPrice": 2000.0,
+                "SellingPrice": 3500.0
+            },
+            {
+                "Id": 2,
+                "ProductName": "Olatte",
+                "Quantity": 10,
+                "Unit": "can",
+                "CostPrice": 1500.0,
+                "SellingPrice": 2500.0
+            },
+            {
+                "Id": 3,
+                "ProductName": "Cardigan",
+                "Quantity": 5,
+                "Unit": "piece",
+                "CostPrice": 35000.0,
+                "SellingPrice": 45000.0
+            },
+            {
+                "Id": 4,
+                "ProductName": "7 UP",
+                "Quantity": 12,
+                "Unit": "can",
+                "CostPrice": 2500.0,
+                "SellingPrice": 4000.0
+            }
+        ]
+    },
+    {
+        "InvoiceId": 5,
+        "EmployeeName": "Anya",
+        "PurchaseDetails": [
+            {
+                "Id": 1,
+                "ProductName": "7 UP",
+                "Quantity": 10,
+                "Unit": "can",
+                "CostPrice": 2500.0,
+                "SellingPrice": 4000.0
+            }
+        ]
+    },
+    {
+        "InvoiceId": 6,
+        "EmployeeName": "meimei",
+        "PurchaseDetails": [
+            {
+                "Id": 1,
+                "ProductName": "Fanta",
+                "Quantity": 14,
+                "Unit": "can",
+                "CostPrice": 2000.0,
+                "SellingPrice": 3500.0
+            },
+            {
+                "Id": 2,
+                "ProductName": "Coke",
+                "Quantity": 22,
+                "Unit": "can",
+                "CostPrice": 1500.0,
+                "SellingPrice": 2500.0
+            },
+            {
+                "Id": 3,
+                "ProductName": "Donut",
+                "Quantity": 10,
+                "Unit": "unit",
+                "CostPrice": 1000.0,
+                "SellingPrice": 2500.0
+            }
+        ]
+    },
+    {
+        "InvoiceId": 7,
+        "EmployeeName": "meimei",
+        "PurchaseDetails": [
+            {
+                "Id": 1,
+                "ProductName": "Coke",
+                "Quantity": 5,
+                "Unit": "can",
+                "CostPrice": 1500.0,
+                "SellingPrice": 2500.0
+            },
+            {
+                "Id": 2,
+                "ProductName": "RIO",
+                "Quantity": 10,
+                "Unit": "bottle",
+                "CostPrice": 6000.0,
+                "SellingPrice": 10000.0
+            }
+        ]
+    },
+    {
+        "InvoiceId": 8,
+        "EmployeeName": "meimei",
+        "PurchaseDetails": [
+            {
+                "Id": 1,
+                "ProductName": "Coke",
+                "Quantity": 100,
+                "Unit": "can",
+                "CostPrice": 1500.0,
+                "SellingPrice": 2500.0
+            },
+            {
+                "Id": 2,
+                "ProductName": "Fanta",
+                "Quantity": 50,
+                "Unit": "can",
+                "CostPrice": 2000.0,
+                "SellingPrice": 3500.0
+            }
+        ]
+    },
+    {
+        "InvoiceId": 9,
+        "EmployeeName": "Anya",
+        "PurchaseDetails": [
+            {
+                "Id": 1,
+                "ProductName": "Buldak",
+                "Quantity": 20,
+                "Unit": "pack",
+                "CostPrice": 3000.0,
+                "SellingPrice": 4500.0
+            }
+        ]
+    }
+]

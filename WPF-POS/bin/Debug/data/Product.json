@@ -1,1 +1,332 @@
-[{"Id":1,"Name":"Fanta","Category":{"Id":1,"Name":"Drink"},"Unit":"can","CostPrice":2000.0,"SellingPrice":3500.0},{"Id":2,"Name":"Coke","Category":{"Id":1,"Name":"Drink"},"Unit":"can","CostPrice":1500.0,"SellingPrice":2500.0},{"Id":4,"Name":"Buldak","Category":{"Id":2,"Name":"Noodle"},"Unit":"pack","CostPrice":3000.0,"SellingPrice":4500.0},{"Id":5,"Name":"Skirt","Category":{"Id":8,"Name":"Clothes"},"Unit":"piece","CostPrice":11000.0,"SellingPrice":15000.0},{"Id":6,"Name":"CosRx Alo Vera Sunscreen","Category":{"Id":4,"Name":"Skincare"},"Unit":"tube","CostPrice":30000.0,"SellingPrice":35000.0},{"Id":7,"Name":"APLB Toner","Category":{"Id":4,"Name":"Skincare"},"Unit":"bottle","CostPrice":15000.0,"SellingPrice":24000.0},{"Id":8,"Name":"Donut","Category":{"Id":3,"Name":"Bakery"},"Unit":"unit","CostPrice":1000.0,"SellingPrice":2500.0},{"Id":9,"Name":"7 UP","Category":{"Id":1,"Name":"Drink"},"Unit":"can","CostPrice":2500.0,"SellingPrice":4000.0},{"Id":10,"Name":"Pan","Category":{"Id":5,"Name":"Kitchen"},"Unit":"unit","CostPrice":20000.0,"SellingPrice":25000.0},{"Id":11,"Name":"Panadol","Category":{"Id":10,"Name":"Medicine"},"Unit":"strip","CostPrice":3000.0,"SellingPrice":5000.0},{"Id":12,"Name":"Fork","Category":{"Id":5,"Name":"Kitchen"},"Unit":"set","CostPrice":7500.0,"SellingPrice":11000.0},{"Id":13,"Name":"Cardigan","Category":{"Id":8,"Name":"Clothes"},"Unit":"piece","CostPrice":35000.0,"SellingPrice":45000.0},{"Id":14,"Name":"Earring","Category":{"Id":7,"Name":"Accesories"},"Unit":"pair","CostPrice":3000.0,"SellingPrice":5000.0},{"Id":15,"Name":"Indomie","Category":{"Id":2,"Name":"Noodle"},"Unit":"pack","CostPrice":600.0,"SellingPrice":1200.0},{"Id":16,"Name":"Sway","Category":{"Id":6,"Name":"Book"},"Unit":"unit","CostPrice":20500.0,"SellingPrice":30000.0},{"Id":17,"Name":"RIO","Category":{"Id":9,"Name":"Alcoholic"},"Unit":"bottle","CostPrice":6000.0,"SellingPrice":10000.0},{"Id":18,"Name":"Melon bread","Category":{"Id":3,"Name":"Bakery"},"Unit":"piece","CostPrice":5000.0,"SellingPrice":7500.0},{"Id":19,"Name":"CathyDoll Face Cleasing Gel","Category":{"Id":4,"Name":"Skincare"},"Unit":"tube","CostPrice":5000.0,"SellingPrice":8000.0},{"Id":20,"Name":"Doliprane","Category":{"Id":10,"Name":"Medicine"},"Unit":"strip","CostPrice":4500.0,"SellingPrice":6500.0},{"Id":21,"Name":"Bracelet","Category":{"Id":7,"Name":"Accesories"},"Unit":"car","CostPrice":4500.0,"SellingPrice":8000.0},{"Id":22,"Name":"SPY","Category":{"Id":9,"Name":"Alcoholic"},"Unit":"bottle","CostPrice":4500.0,"SellingPrice":8500.0},{"Id":23,"Name":"Mama","Category":{"Id":2,"Name":"Noodle"},"Unit":"pack","CostPrice":500.0,"SellingPrice":1000.0},{"Id":24,"Name":"Knife","Category":{"Id":5,"Name":"Kitchen"},"Unit":"set","CostPrice":15000.0,"SellingPrice":20000.0},{"Id":25,"Name":"Living in Venice","Category":{"Id":6,"Name":"Book"},"Unit":"book","CostPrice":10000.0,"SellingPrice":18000.0},{"Id":26,"Name":"Jumiso Sunscreen","Category":{"Id":4,"Name":"Skincare"},"Unit":"tube","CostPrice":38000.0,"SellingPrice":51000.0},{"Id":27,"Name":"Teramisu","Category":{"Id":3,"Name":"Bakery"},"Unit":"slice","CostPrice":5000.0,"SellingPrice":10000.0},{"Id":28,"Name":"Dress","Category":{"Id":8,"Name":"Clothes"},"Unit":"tube","CostPrice":30000.0,"SellingPrice":45000.0},{"Id":29,"Name":"Olatte","Category":{"Id":1,"Name":"Drink"},"Unit":"can","CostPrice":1500.0,"SellingPrice":2500.0},{"Id":30,"Name":"Soju","Category":{"Id":9,"Name":"Alcoholic"},"Unit":"bottle","CostPrice":6000.0,"SellingPrice":10000.0},{"Id":31,"Name":"Pajama","Category":{"Id":8,"Name":"Clothes"},"Unit":"set","CostPrice":12000.0,"SellingPrice":17000.0}]
+[
+    {
+        "Id": 1,
+        "Name": "Fanta",
+        "Category": {
+            "Id": 1,
+            "Name": "Drink"
+        },
+        "Unit": "can",
+        "CostPrice": 2000.0,
+        "SellingPrice": 3500.0
+    },
+    {
+        "Id": 2,
+        "Name": "Coke",
+        "Category": {
+            "Id": 1,
+            "Name": "Drink"
+        },
+        "Unit": "can",
+        "CostPrice": 1500.0,
+        "SellingPrice": 2500.0
+    },
+    {
+        "Id": 4,
+        "Name": "Buldak",
+        "Category": {
+            "Id": 2,
+            "Name": "Noodle"
+        },
+        "Unit": "pack",
+        "CostPrice": 3000.0,
+        "SellingPrice": 4500.0
+    },
+    {
+        "Id": 5,
+        "Name": "Skirt",
+        "Category": {
+            "Id": 8,
+            "Name": "Clothes"
+        },
+        "Unit": "piece",
+        "CostPrice": 11000.0,
+        "SellingPrice": 15000.0
+    },
+    {
+        "Id": 6,
+        "Name": "CosRx Alo Vera Sunscreen",
+        "Category": {
+            "Id": 4,
+            "Name": "Skincare"
+        },
+        "Unit": "tube",
+        "CostPrice": 30000.0,
+        "SellingPrice": 35000.0
+    },
+    {
+        "Id": 7,
+        "Name": "APLB Toner",
+        "Category": {
+            "Id": 4,
+            "Name": "Skincare"
+        },
+        "Unit": "bottle",
+        "CostPrice": 15000.0,
+        "SellingPrice": 24000.0
+    },
+    {
+        "Id": 8,
+        "Name": "Donut",
+        "Category": {
+            "Id": 3,
+            "Name": "Bakery"
+        },
+        "Unit": "unit",
+        "CostPrice": 1000.0,
+        "SellingPrice": 2500.0
+    },
+    {
+        "Id": 9,
+        "Name": "7 UP",
+        "Category": {
+            "Id": 1,
+            "Name": "Drink"
+        },
+        "Unit": "can",
+        "CostPrice": 2500.0,
+        "SellingPrice": 4000.0
+    },
+    {
+        "Id": 10,
+        "Name": "Pan",
+        "Category": {
+            "Id": 5,
+            "Name": "Kitchen"
+        },
+        "Unit": "unit",
+        "CostPrice": 20000.0,
+        "SellingPrice": 25000.0
+    },
+    {
+        "Id": 11,
+        "Name": "Panadol",
+        "Category": {
+            "Id": 10,
+            "Name": "Medicine"
+        },
+        "Unit": "strip",
+        "CostPrice": 3000.0,
+        "SellingPrice": 5000.0
+    },
+    {
+        "Id": 12,
+        "Name": "Fork",
+        "Category": {
+            "Id": 5,
+            "Name": "Kitchen"
+        },
+        "Unit": "set",
+        "CostPrice": 7500.0,
+        "SellingPrice": 11000.0
+    },
+    {
+        "Id": 13,
+        "Name": "Cardigan",
+        "Category": {
+            "Id": 8,
+            "Name": "Clothes"
+        },
+        "Unit": "piece",
+        "CostPrice": 35000.0,
+        "SellingPrice": 45000.0
+    },
+    {
+        "Id": 14,
+        "Name": "Earring",
+        "Category": {
+            "Id": 7,
+            "Name": "Accesories"
+        },
+        "Unit": "pair",
+        "CostPrice": 3000.0,
+        "SellingPrice": 5000.0
+    },
+    {
+        "Id": 15,
+        "Name": "Indomie",
+        "Category": {
+            "Id": 2,
+            "Name": "Noodle"
+        },
+        "Unit": "pack",
+        "CostPrice": 600.0,
+        "SellingPrice": 1200.0
+    },
+    {
+        "Id": 16,
+        "Name": "Sway",
+        "Category": {
+            "Id": 6,
+            "Name": "Book"
+        },
+        "Unit": "unit",
+        "CostPrice": 20500.0,
+        "SellingPrice": 30000.0
+    },
+    {
+        "Id": 17,
+        "Name": "RIO",
+        "Category": {
+            "Id": 9,
+            "Name": "Alcoholic"
+        },
+        "Unit": "bottle",
+        "CostPrice": 6000.0,
+        "SellingPrice": 10000.0
+    },
+    {
+        "Id": 18,
+        "Name": "Melon bread",
+        "Category": {
+            "Id": 3,
+            "Name": "Bakery"
+        },
+        "Unit": "piece",
+        "CostPrice": 5000.0,
+        "SellingPrice": 7500.0
+    },
+    {
+        "Id": 19,
+        "Name": "CathyDoll Face Cleasing Gel",
+        "Category": {
+            "Id": 4,
+            "Name": "Skincare"
+        },
+        "Unit": "tube",
+        "CostPrice": 5000.0,
+        "SellingPrice": 8000.0
+    },
+    {
+        "Id": 20,
+        "Name": "Doliprane",
+        "Category": {
+            "Id": 10,
+            "Name": "Medicine"
+        },
+        "Unit": "strip",
+        "CostPrice": 4500.0,
+        "SellingPrice": 6500.0
+    },
+    {
+        "Id": 21,
+        "Name": "Bracelet",
+        "Category": {
+            "Id": 7,
+            "Name": "Accesories"
+        },
+        "Unit": "car",
+        "CostPrice": 4500.0,
+        "SellingPrice": 8000.0
+    },
+    {
+        "Id": 22,
+        "Name": "SPY",
+        "Category": {
+            "Id": 9,
+            "Name": "Alcoholic"
+        },
+        "Unit": "bottle",
+        "CostPrice": 4500.0,
+        "SellingPrice": 8500.0
+    },
+    {
+        "Id": 23,
+        "Name": "Mama",
+        "Category": {
+            "Id": 2,
+            "Name": "Noodle"
+        },
+        "Unit": "pack",
+        "CostPrice": 500.0,
+        "SellingPrice": 1000.0
+    },
+    {
+        "Id": 24,
+        "Name": "Knife",
+        "Category": {
+            "Id": 5,
+            "Name": "Kitchen"
+        },
+        "Unit": "set",
+        "CostPrice": 15000.0,
+        "SellingPrice": 20000.0
+    },
+    {
+        "Id": 25,
+        "Name": "Living in Venice",
+        "Category": {
+            "Id": 6,
+            "Name": "Book"
+        },
+        "Unit": "book",
+        "CostPrice": 10000.0,
+        "SellingPrice": 18000.0
+    },
+    {
+        "Id": 26,
+        "Name": "Jumiso Sunscreen",
+        "Category": {
+            "Id": 4,
+            "Name": "Skincare"
+        },
+        "Unit": "tube",
+        "CostPrice": 38000.0,
+        "SellingPrice": 51000.0
+    },
+    {
+        "Id": 27,
+        "Name": "Teramisu",
+        "Category": {
+            "Id": 3,
+            "Name": "Bakery"
+        },
+        "Unit": "slice",
+        "CostPrice": 5000.0,
+        "SellingPrice": 10000.0
+    },
+    {
+        "Id": 28,
+        "Name": "Dress",
+        "Category": {
+            "Id": 8,
+            "Name": "Clothes"
+        },
+        "Unit": "tube",
+        "CostPrice": 30000.0,
+        "SellingPrice": 45000.0
+    },
+    {
+        "Id": 29,
+        "Name": "Olatte",
+        "Category": {
+            "Id": 1,
+            "Name": "Drink"
+        },
+        "Unit": "can",
+        "CostPrice": 1500.0,
+        "SellingPrice": 2500.0
+    },
+    {
+        "Id": 30,
+        "Name": "Soju",
+        "Category": {
+            "Id": 9,
+            "Name": "Alcoholic"
+        },
+        "Unit": "bottle",
+        "CostPrice": 6000.0,
+        "SellingPrice": 10000.0
+    },
+    {
+        "Id": 31,
+        "Name": "Pajama",
+        "Category": {
+            "Id": 8,
+            "Name": "Clothes"
+        },
+        "Unit": "set",
+        "CostPrice": 12000.0,
+        "SellingPrice": 17000.0
+    }
+]
